@@ -350,6 +350,136 @@
       color: #1968B1;
     }
 
+    /* ── Data tables section ── */
+    .data-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    .data-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1.25rem;
+    }
+
+    .sheet-block {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .07);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .sheet-header {
+      background: linear-gradient(135deg, #1968B1, #2575ba);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .sheet-title {
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      flex: 1;
+    }
+
+    .sheet-badge {
+      background: rgba(241, 191, 57, .25);
+      color: #F1BF39;
+      border: 1px solid rgba(241, 191, 57, .4);
+      border-radius: 50px;
+      padding: 3px 10px;
+      font-size: .72rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .875rem;
+    }
+
+    thead tr {
+      background: #f0f9ff;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    thead th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #1968B1;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f1f5f9;
+      transition: background .15s;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    tbody td {
+      padding: 10px 16px;
+      color: #334155;
+      vertical-align: middle;
+    }
+
+    .state-box {
+      padding: 3rem;
+      text-align: center;
+      color: #94a3b8;
+    }
+
+    .state-icon {
+      font-size: 2.5rem;
+      margin-bottom: .75rem;
+      display: block;
+    }
+
+    .state-box p {
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    .state-box.error p {
+      color: #dc2626;
+    }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #1968B1;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     /* ── Footer ── */
     footer {
       background: #f1f5f9;
@@ -489,11 +619,25 @@
 
   </main>
 
+  <!-- Data Tables (from public Google Sheet) -->
+  <section class="data-section">
+    <h2>Data Tables</h2>
+    <div id="app">
+      <div class="sheet-block">
+        <div class="state-box">
+          <div class="spinner"></div>
+          <p>Loading sheets…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     &copy; 2026 Finance Website. All Rights Reserved. | SEBI Reg. No.: INA000XXXXXXX
   </footer>
 
   <script>
+    // ── Contact form (Web3Forms) ─────────────────────────────────────────
     const form = document.getElementById('contactForm');
     const btn = document.getElementById('submitBtn');
     const successMsg = document.getElementById('successMsg');
@@ -531,6 +675,161 @@
         btn.innerHTML = '<span>&#9993;</span> Send Message';
       }
     });
+  </script>
+
+  <script>
+    // ── Data tables (public Google Sheet, no backend, no API key) ───────
+    //
+    //  REQUIRED — one-time setup in Google Sheets:
+    //  File → Share → Anyone with the link → Viewer. That's it.
+    //
+    //  Tabs are discovered automatically at load time — add, remove, or
+    //  rename tabs in the sheet and this page picks them up, no code change.
+    //
+    const SHEET_ID = '1zl0Bigjsfs22mPySj9F1HBiuSPlg6zwvgZclODPGSyM'; // from .env GOOGLE_SHEET_URL
+
+    const app = document.getElementById('app');
+
+    const TAB_CACHE_KEY = `sheet-tabs:${SHEET_ID}`;
+    const TAB_CACHE_TTL_MS = 10 * 60 * 1000; // sheet tab list rarely changes
+
+    async function listTabs(id) {
+      try {
+        const cached = JSON.parse(localStorage.getItem(TAB_CACHE_KEY));
+        if (cached && Date.now() - cached.at < TAB_CACHE_TTL_MS) return cached.tabs;
+      } catch {}
+
+      // Google has no keyless API for this, so we read the tab list out of
+      // the sheet's own viewer page (it embeds each tab's name + gid as JS).
+      const res = await fetch(`https://docs.google.com/spreadsheets/d/${id}/htmlview`);
+      if (!res.ok) throw new Error(`Could not open the sheet (HTTP ${res.status}). Make sure it's shared as "Anyone with the link".`);
+      const html = await res.text();
+
+      const tabs = [];
+      const re = /name:\s*"([^"]*)"[\s\S]{0,200}?gid:\s*"(\d+)"/g;
+      let m;
+      while ((m = re.exec(html))) tabs.push({ name: m[1], gid: m[2] });
+
+      if (!tabs.length) throw new Error('No tabs found. Make sure the sheet is shared as "Anyone with the link".');
+
+      try { localStorage.setItem(TAB_CACHE_KEY, JSON.stringify({ at: Date.now(), tabs })); } catch {}
+      return tabs;
+    }
+
+    async function runSheets() {
+      try {
+        const tabs = await listTabs(SHEET_ID);
+        app.innerHTML = '';
+        // Render each tab as soon as it lands instead of waiting on the slowest one.
+        await Promise.all(tabs.map(async t => {
+          try {
+            const { name, headers, rows } = await fetchSheetData(SHEET_ID, t);
+            renderTable(name, headers, rows);
+          } catch (err) {
+            console.error(err);
+            renderTableError(t.name, err.message);
+          }
+        }));
+      } catch (err) {
+        console.error(err);
+        showError(err.message);
+      }
+    }
+
+    async function fetchSheetData(id, { name, gid }) {
+      // GViz API — works on any "Anyone with the link" sheet, no API key needed
+      const url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json&gid=${gid}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Could not load tab "${name}" (HTTP ${res.status}). Make sure the sheet is shared as "Anyone with the link".`);
+      const text = await res.text();
+
+      // GViz wraps response in: /*O_o*/\ngoogle.visualization.Query.setResponse({...});
+      const jsonStr = text.replace(/^[\s\S]*?google\.visualization\.Query\.setResponse\(/, '').replace(/\);?\s*$/, '');
+      const table = JSON.parse(jsonStr).table;
+
+      const headers = table.cols.map(c => c.label || c.id);
+      const rows = (table.rows || []).map(r =>
+        (r.c || []).map(cell => {
+          if (!cell) return '';
+          // GViz returns formatted value (f) or raw value (v)
+          return cell.f ?? (cell.v !== null && cell.v !== undefined ? String(cell.v) : '');
+        })
+      );
+
+      return { name, headers, rows };
+    }
+
+    function renderTable(name, headers, rows) {
+      const nonEmpty = rows.filter(r => r.some(c => c !== ''));
+      const block = document.createElement('div');
+      block.className = 'sheet-block';
+
+      block.innerHTML = `
+        <div class="sheet-header">
+          <span class="sheet-title">📊 ${esc(name)}</span>
+          <span class="sheet-badge">${nonEmpty.length} row${nonEmpty.length !== 1 ? 's' : ''}</span>
+        </div>`;
+
+      if (!nonEmpty.length) {
+        block.innerHTML += `<div class="state-box"><span class="state-icon">🗂️</span><p>No data in this sheet.</p></div>`;
+        app.appendChild(block);
+        return;
+      }
+
+      const wrap = document.createElement('div');
+      wrap.className = 'table-wrap';
+      const table = document.createElement('table');
+
+      const thead = document.createElement('thead');
+      thead.innerHTML = `<tr>${headers.map(h => `<th>${esc(h)}</th>`).join('')}</tr>`;
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      nonEmpty.forEach(row => {
+        const tr = document.createElement('tr');
+        headers.forEach((_, i) => {
+          const td = document.createElement('td');
+          td.textContent = row[i] ?? '';
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+
+      wrap.appendChild(table);
+      block.appendChild(wrap);
+      app.appendChild(block);
+    }
+
+    function renderTableError(name, msg) {
+      const block = document.createElement('div');
+      block.className = 'sheet-block';
+      block.innerHTML = `
+        <div class="sheet-header">
+          <span class="sheet-title">📊 ${esc(name)}</span>
+        </div>
+        <div class="state-box error">
+          <span class="state-icon">❌</span>
+          <p>${esc(msg)}</p>
+        </div>`;
+      app.appendChild(block);
+    }
+
+    function showError(msg) {
+      app.innerHTML = `
+        <div class="sheet-block">
+          <div class="state-box error">
+            <span class="state-icon">❌</span>
+            <p><strong>Could not load data</strong><br><br>${esc(msg)}</p>
+          </div>
+        </div>`;
+    }
+
+    function esc(s) {
+      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    runSheets();
   </script>
 
 </body>

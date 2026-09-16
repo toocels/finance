@@ -8,9 +8,19 @@ A SEBI-registered investment adviser website — static, accessible, compliance-
 |-------|--------|-----|
 | **Hosting** | GitHub Pages | Free, static, commercial use allowed, deploys from Git |
 | **Contact Form** | Web3Forms | No backend needed, free 250/mo, just HTML |
+| **Data Tables** | Public Google Sheet (GViz API) | Live data, no backend, no API key |
 | **Domain** | Cloudflare Registrar | At-cost pricing (~₹800/yr), point DNS to GitHub Pages |
 
-No backend or server needed. Only cost is the domain.
+No backend or server needed. Only cost is the domain. Entire site is one file: `index.html`.
+
+### Data Tables
+
+`index.html` fetches a public Google Sheet client-side and renders one table per tab:
+
+- Sheet must be shared **Anyone with the link → Viewer**.
+- Sheet ID is hardcoded in the `<script>` at the bottom of `index.html` (from `.env`'s `GOOGLE_SHEET_URL`) — no API key.
+- Tabs (names, columns, rows) are discovered automatically at load time; add/remove/rename a tab in the sheet, page picks it up.
+- Tab list is cached in `localStorage` for 10 min to skip the discovery request on repeat visits.
 
 ---
 
