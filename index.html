@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Advisory — Test Page</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(25, 104, 177, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      border-radius: 50px;
+      padding: 4px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    h1 span {
+      color: #f1bf39;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #f1f5f9;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #1968B1;
+      box-shadow: 0 0 0 3px rgba(25, 104, 177, 0.25);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 13px;
+      background: linear-gradient(135deg, #1968B1, #2575ba);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      font-family: inherit;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status {
+      margin-top: 1rem;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .status.success {
+      background: rgba(111, 168, 78, 0.15);
+      border: 1px solid #6FA84E;
+      color: #86efac;
+    }
+
+    .status.error {
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid #dc2626;
+      color: #fca5a5;
+    }
+
+    .worker-url-note {
+      margin-top: 1.5rem;
+      padding: 10px 14px;
+      background: rgba(241, 191, 57, 0.08);
+      border: 1px solid rgba(241, 191, 57, 0.25);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: #fbbf24;
+      line-height: 1.5;
+    }
+
+    .worker-url-note code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="badge">🚀 Dev Test Page</div>
+    <h1>Hello, <span>World!</span></h1>
+    <p class="subtitle">This is a test contact form. It will POST to your Cloudflare Worker endpoint and show an alert
+      on success.</p>
+
+    <form id="contactForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Say hello..." required></textarea>
+      </div>
+      <button type="submit" id="submitBtn">Send Message</button>
+      <div class="status" id="statusMsg"></div>
+    </form>
+
+    <div class="worker-url-note">
+      ⚙️ Update <code>WORKER_URL</code> in the script below to your Cloudflare Worker endpoint
+      (e.g. <code>https://your-worker.your-name.workers.dev/contact</code>)
+    </div>
+  </div>
+
+  <script>
+    // ── CHANGE THIS to your Cloudflare Worker URL ──────────────────────────────
+    const WORKER_URL = 'https://your-worker.your-name.workers.dev/contact';
+    // ──────────────────────────────────────────────────────────────────────────
+
+    const form = document.getElementById('contactForm');
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('statusMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      status.style.display = 'none';
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        message: document.getElementById('message').value.trim(),
+      };
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (res.ok) {
+          alert('✅ Message sent successfully! We\'ll get back to you soon.');
+          showStatus('success', '✅ Message sent! We\'ll be in touch.');
+          form.reset();
+        } else {
+          const err = await res.text();
+          throw new Error(err || 'Worker returned an error');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('❌ Something went wrong: ' + err.message);
+        showStatus('error', '❌ Failed to send. Check the Worker URL or CORS settings.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    });
+
+    function showStatus(type, msg) {
+      status.className = 'status ' + type;
+      status.textContent = msg;
+      status.style.display = 'block';
+    }
+  </script>
+
+</body>
+
+</html>
