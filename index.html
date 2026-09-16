@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Financial Advisory — Test Page</title>
+  <title>Contact Us — Finance Website</title>
+  <meta name="description" content="Get in touch with our SEBI-registered financial advisory team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,
     *::before,
@@ -15,58 +18,113 @@
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f8fafc;
+      color: #334155;
       min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #1968B1;
+      padding: 1rem 2rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      justify-content: space-between;
     }
 
-    .card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 16px;
-      padding: 2.5rem;
-      width: 100%;
-      max-width: 460px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-    }
-
-    .badge {
-      display: inline-block;
-      background: rgba(25, 104, 177, 0.2);
-      color: #60a5fa;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-      border-radius: 50px;
-      padding: 4px 14px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 1.75rem;
+    .logo {
+      color: white;
+      font-size: 1.1rem;
       font-weight: 700;
-      color: #f1f5f9;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: #F1BF39;
+    }
+
+    /* ── Hero banner ── */
+    .hero {
+      background: linear-gradient(135deg, #1968B1 0%, #2575ba 50%, #3482c3 100%);
+      padding: 60px 20px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: clamp(1.8rem, 5vw, 2.75rem);
+      font-weight: 700;
       margin-bottom: 0.5rem;
-      line-height: 1.2;
+      position: relative;
     }
 
-    h1 span {
-      color: #f1bf39;
+    .hero p {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.05rem;
+      position: relative;
     }
 
-    .subtitle {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-      line-height: 1.5;
+    /* ── Main layout ── */
+    main {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 50px 20px 60px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Form card ── */
+    .form-card {
+      background: white;
+      border-radius: 18px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    }
+
+    .form-card h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+
+    .form-card .subtitle {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
     }
 
     .form-group {
@@ -77,40 +135,52 @@
       display: block;
       font-size: 0.8rem;
       font-weight: 600;
-      color: #94a3b8;
+      color: #475569;
       margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+    }
+
+    label .req {
+      color: #dc2626;
+      margin-left: 2px;
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       width: 100%;
-      background: #0f172a;
-      border: 1px solid #334155;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
       border-radius: 10px;
-      padding: 12px 14px;
-      color: #f1f5f9;
+      padding: 11px 14px;
+      color: #1e293b;
       font-size: 0.95rem;
       font-family: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
       outline: none;
     }
 
     input:focus,
-    textarea:focus {
+    textarea:focus,
+    select:focus {
       border-color: #1968B1;
-      box-shadow: 0 0 0 3px rgba(25, 104, 177, 0.25);
+      box-shadow: 0 0 0 3px rgba(25, 104, 177, 0.12);
+      background: white;
     }
 
     textarea {
       resize: vertical;
-      min-height: 100px;
+      min-height: 120px;
     }
 
-    button {
+    select {
+      cursor: pointer;
+    }
+
+    .submit-btn {
       width: 100%;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
       padding: 13px;
       background: linear-gradient(135deg, #1968B1, #2575ba);
       color: white;
@@ -119,148 +189,348 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
       font-family: inherit;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    button:hover {
+    .submit-btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(25, 104, 177, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Success / error messages */
+    .alert {
+      display: none;
+      margin-top: 1rem;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .alert.success {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      color: #166534;
+    }
+
+    .alert.error {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+    }
+
+    /* ── Info sidebar ── */
+    .info-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-icon.blue {
+      background: linear-gradient(135deg, #1968B1, #3482c3);
+    }
+
+    .info-icon.green {
+      background: linear-gradient(135deg, #6FA84E, #8BC34A);
+    }
+
+    .info-icon.gold {
+      background: linear-gradient(135deg, #F1BF39, #f5d06e);
+    }
+
+    .info-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .info-value {
+      font-size: 0.9rem;
+      color: #1e293b;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .info-value:hover {
+      color: #1968B1;
+    }
+
+    .calendly-card {
+      background: linear-gradient(135deg, #1968B1, #2575ba);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1.25rem;
+    }
+
+    .calendly-card h3 {
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .calendly-card p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.83rem;
+      margin-bottom: 1rem;
+    }
+
+    .calendly-btn {
+      display: inline-block;
+      background: #F1BF39;
+      color: #1e293b;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .calendly-btn:hover {
       opacity: 0.9;
       transform: translateY(-1px);
     }
 
-    button:active {
-      transform: translateY(0);
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .status {
+    .sebi-note {
+      text-align: center;
       margin-top: 1rem;
-      padding: 12px 14px;
+      padding: 0.85rem;
+      background: #f0f9ff;
+      border: 1px solid rgba(25, 104, 177, 0.1);
       border-radius: 10px;
-      font-size: 0.9rem;
-      display: none;
-    }
-
-    .status.success {
-      background: rgba(111, 168, 78, 0.15);
-      border: 1px solid #6FA84E;
-      color: #86efac;
-    }
-
-    .status.error {
-      background: rgba(220, 38, 38, 0.15);
-      border: 1px solid #dc2626;
-      color: #fca5a5;
-    }
-
-    .worker-url-note {
-      margin-top: 1.5rem;
-      padding: 10px 14px;
-      background: rgba(241, 191, 57, 0.08);
-      border: 1px solid rgba(241, 191, 57, 0.25);
-      border-radius: 8px;
       font-size: 0.78rem;
-      color: #fbbf24;
-      line-height: 1.5;
+      color: #475569;
     }
 
-    .worker-url-note code {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: monospace;
+    .sebi-note strong {
+      color: #1968B1;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 0.78rem;
+      color: #64748b;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="card">
-    <div class="badge">🚀 Dev Test Page</div>
-    <h1>Hello, <span>World!</span></h1>
-    <p class="subtitle">This is a test contact form. It will POST to your Cloudflare Worker endpoint and show an alert
-      on success.</p>
+  <header>
+    <a href="#" class="logo">Finance <span>Website</span></a>
+  </header>
 
-    <form id="contactForm">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Say hello..." required></textarea>
-      </div>
-      <button type="submit" id="submitBtn">Send Message</button>
-      <div class="status" id="statusMsg"></div>
-    </form>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Get in Touch</h1>
+    <p>Have questions about financial planning? We'd love to hear from you.</p>
+  </section>
 
-    <div class="worker-url-note">
-      ⚙️ Update <code>WORKER_URL</code> in the script below to your Cloudflare Worker endpoint
-      (e.g. <code>https://your-worker.your-name.workers.dev/contact</code>)
+  <!-- Main content -->
+  <main>
+
+    <!-- Contact Form -->
+    <div class="form-card">
+      <h2>Send Us a Message</h2>
+      <p class="subtitle">We typically respond within 1–2 business days.</p>
+
+      <!--
+        WEB3FORMS SETUP:
+        1. Go to https://web3forms.com and sign up (free)
+        2. Get your Access Key from the dashboard
+        3. Replace "YOUR_WEB3FORMS_ACCESS_KEY" below with your actual key
+      -->
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+
+        <!-- Web3Forms required hidden inputs -->
+        <input type="hidden" name="access_key" value="8bcebccf-7d29-41eb-b965-a63ec1e67888">
+        <input type="hidden" name="subject" value="New Contact Form Submission — Financial Advisory">
+        <input type="hidden" name="from_name" value="Financial Advisory Website">
+        <input type="checkbox" name="botcheck" style="display:none;">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98xxx xxxxx" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="subject">Topic</label>
+            <select id="subject" name="topic">
+              <option value="">Select a topic</option>
+              <option>Financial Planning</option>
+              <option>Investment Advisory</option>
+              <option>Retirement Planning</option>
+              <option>NRI Services</option>
+              <option>Second Opinion on Investments</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message <span class="req">*</span></label>
+          <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span>&#9993;</span> Send Message
+        </button>
+
+        <div class="alert success" id="successMsg">
+          ✅ Message sent successfully! We'll get back to you within 1–2 business days.
+        </div>
+        <div class="alert error" id="errorMsg">
+          ❌ Something went wrong. Please try again or email us directly.
+        </div>
+      </form>
     </div>
-  </div>
+
+    <!-- Sidebar info -->
+    <div>
+      <div class="info-card">
+        <div class="info-icon blue">📞</div>
+        <div>
+          <div class="info-label">Call Us</div>
+          <a href="tel:+917083346003" class="info-value">+91 70833 46003</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon green">✉️</div>
+        <div>
+          <div class="info-label">Email Us</div>
+          <a href="mailto:contact@yourdomain.com" class="info-value">contact@yourdomain.com</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon gold">📍</div>
+        <div>
+          <div class="info-label">Office</div>
+          <div class="info-value" style="font-weight:400; font-size:0.85rem; line-height:1.5;">
+            Mumbai, Maharashtra<br>India — 400066
+          </div>
+        </div>
+      </div>
+
+      <div class="calendly-card">
+        <h3>Prefer a Direct Conversation?</h3>
+        <p>Book a free 30-min discovery call at your convenience.</p>
+        <!-- Replace with your actual Calendly link -->
+        <a href="https://calendly.com/your-link/30min" target="_blank" rel="noopener noreferrer" class="calendly-btn">
+          📅 Book an Appointment
+        </a>
+      </div>
+
+      <div class="sebi-note">
+        🛡️ <strong>SEBI Registered</strong> Investment Adviser<br>
+        Reg. No.: <strong>INA000XXXXXXX</strong>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2026 Finance Website. All Rights Reserved. | SEBI Reg. No.: INA000XXXXXXX
+  </footer>
 
   <script>
-    // ── CHANGE THIS to your Cloudflare Worker URL ──────────────────────────────
-    const WORKER_URL = 'https://your-worker.your-name.workers.dev/contact';
-    // ──────────────────────────────────────────────────────────────────────────
-
     const form = document.getElementById('contactForm');
     const btn = document.getElementById('submitBtn');
-    const status = document.getElementById('statusMsg');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       btn.disabled = true;
-      btn.textContent = 'Sending…';
-      status.style.display = 'none';
+      btn.innerHTML = '<span>⏳</span> Sending…';
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
 
-      const payload = {
-        name: document.getElementById('name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        message: document.getElementById('message').value.trim(),
-      };
+      const formData = new FormData(form);
 
       try {
-        const res = await fetch(WORKER_URL, {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          body: formData,
         });
 
-        if (res.ok) {
-          alert('✅ Message sent successfully! We\'ll get back to you soon.');
-          showStatus('success', '✅ Message sent! We\'ll be in touch.');
+        const json = await res.json();
+
+        if (json.success) {
+          successMsg.style.display = 'block';
           form.reset();
         } else {
-          const err = await res.text();
-          throw new Error(err || 'Worker returned an error');
+          throw new Error(json.message || 'Submission failed');
         }
       } catch (err) {
         console.error(err);
-        alert('❌ Something went wrong: ' + err.message);
-        showStatus('error', '❌ Failed to send. Check the Worker URL or CORS settings.');
+        errorMsg.style.display = 'block';
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Send Message';
+        btn.innerHTML = '<span>&#9993;</span> Send Message';
       }
     });
-
-    function showStatus(type, msg) {
-      status.className = 'status ' + type;
-      status.textContent = msg;
-      status.style.display = 'block';
-    }
   </script>
 
 </body>
