@@ -22,6 +22,8 @@ A SEBI-registered investment adviser (RIA) website — static, accessible, and c
 - [x] **Zero Server / Database Footprint**: No database, no PHP, and no vulnerable CMS plugins (immune to SQLi, RCE, and database breaches).
 - [x] **Static CDN Delivery**: Delivered over Cloudflare Edge SSL and GitHub Pages CDN.
 - [x] **Client-Side Configuration**: Centralized `config.js` for quick parameter changes (Sheet ID, email keys).
+- [ ] **Google Sheet Publish Scope**: Publish as **View-only to anyone with the link** — confirm no edit access is open, and only the intended tab/range is published (not the whole spreadsheet).
+- [ ] **Contact Form Spam Protection**: Web3Forms access key is public in client-side JS by design (expected for this service) — add a honeypot field or Web3Forms' built-in hCaptcha to block bot submissions.
 
 ### 2. Accessibility & Compliance (WCAG 2.2 AA / GIGW 3.0 / IS 17802)
 - [x] **Screen Reader Support**: Tested and navigable via NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack (Android).
@@ -43,6 +45,13 @@ A SEBI-registered investment adviser (RIA) website — static, accessible, and c
   - [x] Semantic form with explicit `<label for="...">` associations.
   - [x] Web3Forms integration sending submissions directly to adviser email.
   - [x] Accessible error states and submission feedback announced via `aria-live`.
+
+### 4. SEO & Analytics
+- [ ] **`robots.txt`**: Allow crawling, point to sitemap.
+- [ ] **Sitemap** (`sitemap.xml`): pairs with the GIGW sitemap page already listed under statutory pages.
+- [ ] **Meta Tags**: title, meta description, Open Graph tags (for link-share previews).
+- [ ] **Structured Data** (optional): `schema.org` `FinancialService` / `Organization` markup.
+- [ ] **Analytics**: privacy-friendly option — e.g. Cloudflare Web Analytics (free, no cookie/consent banner needed since it's cookieless).
 
 ---
 
@@ -101,6 +110,20 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 ---
 
+## Ownership & Access
+
+| Account / Asset | Holds | Owner |
+| :--- | :--- | :--- |
+| GitHub Repo / Org | Source code, deploy pipeline | *(fill in)* |
+| Cloudflare Account | Domain registration, DNS, edge SSL | *(fill in)* |
+| Web3Forms Account | Contact form access key | *(fill in)* |
+| Google Sheet | Complaint data source | *(fill in)* |
+
+* Admin credentials for each account above should be handed over (or shared) with the client, with 2FA enabled on all of them.
+* Whoever owns the Google Sheet and Web3Forms account controls the live data/contact pipeline — keep this with whoever will maintain the site day-to-day.
+
+---
+
 ## Maintenance & Operating Costs
 
 ### 1. Annual Cost Breakdown
@@ -145,12 +168,18 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 ## For Future Plans and Development
 
-### 1. Content Updates & Minor Additions
+### 1. Engagement & Change Process
+* **Request Flow**: Client shares requirement (copy, new section, feature ask) → developer scopes and implements → pushed live via `git push` (auto-deploys, no staging step).
+* **Content Requirement**: Client provides final copy/content for advisory or statutory sections; developer handles formatting/markup only.
+* **Feature Requirement**: Any new integration (scheduling, chat, chatbot) needs its own service account/API key, set up by the client or handed to the developer before implementation.
+* **Contact Detail Quality**: Compliance/grievance officer contact should use a professional domain email (not personal Gmail), consistent with published statutory contact details.
+
+### 2. Content Updates & Minor Additions
 * **Turnaround**: Minutes to a few hours depending on complexity.
 * **Process**: Simple code edit in `index.html` (or `config.js`) followed by a `git push`. Automatically deployed to GitHub Pages.
 - [ ] **Content Additions & Copy Updates**: Updating advisory bio, services, fee structure, disclosures, or adding new static sub-pages.
 
-### 2. Feature Additions & Expansion
+### 3. Feature Additions & Expansion
 * **Architecture**: The existing single-file / static architecture is modular and fully expandable. New capabilities can be built right into this application without any need to rework or rebuild from scratch.
 * **Effort**: Requires dedicated implementation/integration coding, but reuses the existing design system and deployment pipeline.
 - [ ] **Appointment Scheduling**: Drop-in embed for Cal.com or Calendly via lightweight script.
