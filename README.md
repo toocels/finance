@@ -52,18 +52,23 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 ### 1. Adviser Identification & Registration
 * RIA Registration Number & Validity
-* BASL Membership ID
+* BASL Membership ID & Validity / Renewal Date
 * Registered Office Address & Corporate Identification
 * Principal Officer & Compliance / Grievance Officer Contact Details
+* NISM Certification Numbers — Principal Officer, Compliance Officer, and any persons associated with investment advice
 
 ### 2. Mandatory SEBI Risk Disclaimer
 > *"Investment in securities market are subject to market risks. Read all the related documents carefully before investing."*
+
+> *"Registration granted by SEBI, membership of BASL and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors."*
+*(Standard SEBI advertisement-code disclaimer — separate from the risk disclaimer above, required alongside it.)*
 
 ### 3. Investor Charter for Investment Advisers
 * Dedicated section detailing client rights, advisory process, and fee transparency.
 
 ### 4. Grievance Redressal & Escalation Matrix
 * Multi-tier escalation table for client complaints.
+* Stated resolution timelines per tier (verify current SCORES 2.0 turnaround — first response / final resolution windows have changed under recent circulars, confirm before publishing exact day counts).
 * Direct links to official regulatory portals:
   * **SEBI SCORES 2.0**: `https://scores.sebi.gov.in/`
   * **SMART ODR Portal**: `https://smartodr.in/`
@@ -76,6 +81,23 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 * **About the Adviser**: Professional credentials, SEBI registration details, and philosophy.
 * **Services & Fee Structure**: Defined advisory scope and fee schedules.
 * **Accessibility Statement**: Footer disclosure documenting WCAG 2.2 AA conformance and grievance contacts for disabled users.
+
+### 7. Fee & Conflict-of-Interest Disclosures
+* Fee cap disclosure (verify current SEBI-prescribed limit before publishing a figure — it has been revised before).
+* Fee collection via banking channels only (no cash), and any advance-fee period limits.
+* Refund / termination clause for the advisory agreement.
+* Conflict-of-interest disclosure: associate entities, referral arrangements, if any.
+
+### 8. GIGW 3.0 Mandatory Policy Pages
+*Required alongside the WCAG/GIGW conformance claim — currently missing from scope:*
+* **Privacy Policy**: data collected via Contact Form and stored in Google Sheets; third-party processors (Web3Forms, Google); DPDP Act 2023 consent notice.
+* **Terms of Use / Website Disclaimer**: site content ≠ investment advice, no-guarantee-of-returns language, governing law/jurisdiction.
+* **Hyperlinking Policy**: disclaimer covering outbound links to SEBI SCORES / SMART ODR / other external sites.
+* **Copyright Policy**.
+* **Sitemap** page.
+* **FAQ / Help** section.
+* **Website Feedback** mechanism (general UX/content feedback — distinct from the grievance redressal channel).
+* **Cookie Disclosure** (Cloudflare edge cookies) — can fold into Privacy Policy.
 
 ---
 
@@ -95,10 +117,11 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 * **Monthly Complaint Data Updates**: Update figures directly in the shared Google Sheet. Changes propagate to the live site on next page load.
 * **Domain & DNS**: Annual domain renewal via Cloudflare Registrar (SSL auto-renewed).
+* **Content Freshness (GIGW, soft requirement)**: "Last updated" date stamp on statutory/disclosure pages.
 
 ---
 
-## Standards & Audit Verification
+## Standards & Audit Passing Timeline/Plan
 
 ### 1. Standards & Regulations
 * **W3C WCAG 2.2 Level AA**: [WCAG 2.2 Specification](https://www.w3.org/TR/WCAG22/) & [Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
@@ -120,9 +143,16 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 ---
 
-## Future Plans & Development
+## For Future Plans and Development
 
-- [ ] **Content Additions & Copy Updates**: Updating advisory bio, services, fee structure, or adding new static sub-pages.
+### 1. Content Updates & Minor Additions
+* **Turnaround**: Minutes to a few hours depending on complexity.
+* **Process**: Simple code edit in `index.html` (or `config.js`) followed by a `git push`. Automatically deployed to GitHub Pages.
+- [ ] **Content Additions & Copy Updates**: Updating advisory bio, services, fee structure, disclosures, or adding new static sub-pages.
+
+### 2. Feature Additions & Expansion
+* **Architecture**: The existing single-file / static architecture is modular and fully expandable. New capabilities can be built right into this application without any need to rework or rebuild from scratch.
+* **Effort**: Requires dedicated implementation/integration coding, but reuses the existing design system and deployment pipeline.
 - [ ] **Appointment Scheduling**: Drop-in embed for Cal.com or Calendly via lightweight script.
-- [ ] **Live Chat / WhatsApp Support**: Optional modular widget (e.g. Crisp, Tawk.to, WhatsApp API link).
+- [ ] **Live Chat / WhatsApp Support**: Modular widget integration (e.g. Crisp, Tawk.to, WhatsApp API link).
 - [ ] **AI Assistant / Chatbot**: Integration of an automated assistant for investor FAQs.
