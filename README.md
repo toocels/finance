@@ -77,11 +77,12 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 *(Standard SEBI advertisement-code disclaimer — separate from the risk disclaimer above, required alongside it.)*
 
 ### 3. Investor Charter for Investment Advisers
-* Dedicated section detailing client rights, advisory process, and fee transparency.
+* Must be the **current SEBI-prescribed Investor Charter for Investment Advisers**, as circulated by SEBI — reproduced as prescribed, not a custom paraphrased summary written for this site.
+* Displayed prominently (own page or a clearly linked, easy-to-find section) — SEBI requires prominent display, not just presence somewhere on the site.
 
 ### 4. Grievance Redressal & Escalation Matrix
 * Multi-tier escalation table for client complaints.
-* Stated resolution timelines per tier (verify current SCORES 2.0 turnaround — first response / final resolution windows have changed under recent circulars, confirm before publishing exact day counts).
+* **Resolution timelines per tier — pre-launch gate**: site does not go live with placeholder day-counts. Client/compliance professional confirms the current first-response and final-resolution windows from the latest SEBI/SCORES 2.0 circular before launch (these windows have changed across circulars), and the escalation table ships with those confirmed numbers.
 * Direct links to official regulatory portals:
   * **SEBI SCORES 2.0**: `https://scores.sebi.gov.in/`
   * **SMART ODR Portal**: `https://smartodr.in/`
@@ -97,7 +98,7 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 * **Accessibility Statement**: Footer disclosure documenting WCAG 2.2 AA conformance and grievance contacts for disabled users.
 
 ### 7. Fee & Conflict-of-Interest Disclosures
-* Fee cap disclosure — display the figure matching the adviser's **actual fee model** (fixed-fee vs. AUA-based), confirmed against the SEBI circular in force at publish time. As of the last check: fixed-fee mode is capped around ₹1,51,000/annum/family, AUA mode at 2.5% of AUA — **client/compliance professional to confirm the current figure before it goes live**, this is not to be copy-pasted without verification since the ceiling has been revised before.
+* **Fee cap disclosure — pre-launch gate**: site does not go live with an unconfirmed figure. Reference ceiling as of last check: fixed-fee mode ₹1,51,000/annum/family, AUA mode 2.5% of AUA. Client/compliance professional confirms this is still current and matches the adviser's actual fee model (fixed-fee vs. AUA-based) before launch — this ceiling has been revised before, so the confirmed figure, not the reference number above, is what ships to the Services & Fee Structure section.
 * Fee collection via banking channels only (no cash), and any advance-fee period limits.
 * Refund / termination clause for the advisory agreement.
 * Conflict-of-interest disclosure: associate entities, referral arrangements, if any.
@@ -169,6 +170,8 @@ SEBI's advertisement code applies to the website itself, not just to separate ad
 ---
 
 ## Standards & Audit Passing Timeline/Plan
+
+Claiming conformance to WCAG 2.2 AA / GIGW 3.0 / IS 17802 requires evidence, not just a statement. Before the site (or this README) states the site **conforms to** these standards rather than **targets** them, it needs a passing result from §2's automated tools (Axe, Lighthouse, WAVE) plus a manual screen-reader pass, at minimum — ideally a written test report/summary of what was checked and what passed. Until that evidence exists, keep the wording as "targeting" these standards.
 
 ### 1. Standards & Regulations
 * **W3C WCAG 2.2 Level AA**: [WCAG 2.2 Specification](https://www.w3.org/TR/WCAG22/) & [Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
