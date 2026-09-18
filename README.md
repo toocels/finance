@@ -1,6 +1,10 @@
 # Finance Website
 
-A SEBI-registered investment adviser (RIA) website — static, accessible, and compliance-ready. Conforms to **WCAG 2.2 Level AA**, **GIGW 3.0**, and **BIS (IS 17802:2021)** standards.
+A website for a SEBI-registered investment adviser (RIA), implementing the applicable SEBI website-disclosure requirements and targeting **WCAG 2.2 Level AA**, **GIGW 3.0**, and **BIS (IS 17802:2021)** accessibility standards.
+
+## Scope of Compliance Responsibility
+
+This project implements the SEBI-mandated disclosure and website requirements identified and approved by the client/compliance professional. It is **not** a guarantee that the adviser's overall business is SEBI-compliant — compliance sign-off on content, figures, and regulatory interpretation rests with the client and their compliance professional, not the developer. The developer's responsibility is limited to accurately building and displaying the content and disclosures the client/compliance professional approves.
 
 ---
 
@@ -85,6 +89,7 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 ### 5. Monthly Complaints Redressal Table
 * Dynamic table rendered from Google Sheets (categorized by source: SEBI SCORES, Direct, Others; and status: Received, Resolved, Pending).
 * Satisfies mandatory SEBI compliance to publish monthly complaint data by the 7th of every month.
+* **Public data must be aggregate counts only** — numbers per category/status. No client names, phone numbers, emails, complaint descriptions, or KYC/identifying information in the published sheet or tab.
 
 ### 6. Advisory & Profile Content
 * **About the Adviser**: Professional credentials, SEBI registration details, and philosophy.
@@ -92,14 +97,14 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 * **Accessibility Statement**: Footer disclosure documenting WCAG 2.2 AA conformance and grievance contacts for disabled users.
 
 ### 7. Fee & Conflict-of-Interest Disclosures
-* Fee cap disclosure (verify current SEBI-prescribed limit before publishing a figure — it has been revised before).
+* Fee cap disclosure — display the figure matching the adviser's **actual fee model** (fixed-fee vs. AUA-based), confirmed against the SEBI circular in force at publish time. As of the last check: fixed-fee mode is capped around ₹1,51,000/annum/family, AUA mode at 2.5% of AUA — **client/compliance professional to confirm the current figure before it goes live**, this is not to be copy-pasted without verification since the ceiling has been revised before.
 * Fee collection via banking channels only (no cash), and any advance-fee period limits.
 * Refund / termination clause for the advisory agreement.
 * Conflict-of-interest disclosure: associate entities, referral arrangements, if any.
 
-### 8. GIGW 3.0 Mandatory Policy Pages
-*Required alongside the WCAG/GIGW conformance claim — currently missing from scope:*
-* **Privacy Policy**: data collected via Contact Form and stored in Google Sheets; third-party processors (Web3Forms, Google); DPDP Act 2023 consent notice.
+### 8. GIGW 3.0 Mandatory Policy Pages — Required Deliverables
+*Required alongside the WCAG/GIGW conformance claim. In scope for delivery, not deferred to a later phase:*
+* **Privacy Policy** — see §9 below for the detailed content requirements, not just a generic page.
 * **Terms of Use / Website Disclaimer**: site content ≠ investment advice, no-guarantee-of-returns language, governing law/jurisdiction.
 * **Hyperlinking Policy**: disclaimer covering outbound links to SEBI SCORES / SMART ODR / other external sites.
 * **Copyright Policy**.
@@ -107,6 +112,25 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 * **FAQ / Help** section.
 * **Website Feedback** mechanism (general UX/content feedback — distinct from the grievance redressal channel).
 * **Cookie Disclosure** (Cloudflare edge cookies) — can fold into Privacy Policy.
+
+### 9. Privacy Policy & DPDP Implementation (Contact Form)
+Not a generic policy page — the Privacy Policy content must explicitly answer:
+* **What is collected**: name, email, phone, message (contact form fields — confirm exact field list against the built form).
+* **Where it's stored**: submissions route through Web3Forms to the adviser's email; any data also logged/stored in Google Sheets should be stated if applicable.
+* **Who processes it**: Web3Forms (form relay) and Google (Sheets), named explicitly as third-party processors.
+* **Retention period**: how long submissions are kept, and where (inbox, sheet, or both).
+* **Correction / deletion request process**: a named contact/channel for a person to request their data be corrected or deleted.
+* **Consent notice at the point of collection**: a checkbox or notice directly on the contact form itself (not just referenced in a separate policy page) — e.g. "By submitting, you consent to your data being processed as per our Privacy Policy."
+* **Third-party disclosure**: explicit statement that submitted data is sent to Web3Forms/Google, since it leaves the site's own infrastructure.
+
+### 10. Advertisement Code Compliance (Content Review)
+SEBI's advertisement code applies to the website itself, not just to separate ads — disclaimers elsewhere on the site don't cure misleading content. Before publishing any page copy, check it does **not** contain:
+* "Guaranteed returns" or similar return-certainty language.
+* "Best investment advisor" / superlative or unsubstantiated ranking claims.
+* Misleading or cherry-picked past-performance figures.
+* Promises or projections of future performance.
+* Testimonials that create a prohibited or misleading impression.
+* "SEBI approved" or similar phrasing implying SEBI endorses the adviser's services (registration ≠ endorsement — this is why the disclaimer in §2 exists, but the base copy still needs to avoid implying it).
 
 ---
 
