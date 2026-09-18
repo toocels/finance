@@ -19,32 +19,32 @@ A SEBI-registered investment adviser (RIA) website — static, accessible, and c
 ## Features & Implementation Checklist
 
 ### 1. Security & Static Architecture
-- [x] **Zero Server / Database Footprint**: No database, no PHP, and no vulnerable CMS plugins (immune to SQLi, RCE, and database breaches).
-- [x] **Static CDN Delivery**: Delivered over Cloudflare Edge SSL and GitHub Pages CDN.
-- [x] **Client-Side Configuration**: Centralized `config.js` for quick parameter changes (Sheet ID, email keys).
+- [ ] **Zero Server / Database Footprint**: No database, no PHP, and no vulnerable CMS plugins (immune to SQLi, RCE, and database breaches).
+- [ ] **Static CDN Delivery**: Delivered over Cloudflare Edge SSL and GitHub Pages CDN.
+- [ ] **Client-Side Configuration**: Centralized `config.js` for quick parameter changes (Sheet ID, email keys).
 - [ ] **Google Sheet Publish Scope**: Publish as **View-only to anyone with the link** — confirm no edit access is open, and only the intended tab/range is published (not the whole spreadsheet).
 - [ ] **Contact Form Spam Protection**: Web3Forms access key is public in client-side JS by design (expected for this service) — add a honeypot field or Web3Forms' built-in hCaptcha to block bot submissions.
 
 ### 2. Accessibility & Compliance (WCAG 2.2 AA / GIGW 3.0 / IS 17802)
-- [x] **Screen Reader Support**: Tested and navigable via NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack (Android).
-- [x] **100% Keyboard Navigation**: Logical tab index, no keyboard traps, and visible `:focus-visible` outlines (minimum 2px solid with offset).
-- [x] **Skip to Main Content Link**: Hidden anchor link made visible on keyboard focus.
-- [x] **Accessibility Toolbar (GIGW 3.0)**:
-  - [x] Font size scaling (`A-`, `A`, `A+`) using relative `rem`/`em` typography.
-  - [x] High-contrast / Dark theme toggle.
-- [x] **Mobile Reflow (WCAG 1.4.10)**: Responsive layout tested down to 320px viewport without 2D horizontal text scrolling at 400% zoom.
-- [x] **Touch Target Sizes (WCAG 2.5.8)**: Minimum 44×44px interactive areas for all buttons, tabs, and inputs.
-- [x] **Semantic Markup**: Proper landmark tags (`<header>`, `<main>`, `<nav>`, `<footer>`), `<h1>`-`<h6>` hierarchy, and `aria-label` / `aria-live` attributes.
+- [ ] **Screen Reader Support**: Tested and navigable via NVDA, JAWS, VoiceOver (macOS/iOS), and TalkBack (Android).
+- [ ] **100% Keyboard Navigation**: Logical tab index, no keyboard traps, and visible `:focus-visible` outlines (minimum 2px solid with offset).
+- [ ] **Skip to Main Content Link**: Hidden anchor link made visible on keyboard focus.
+- [ ] **Accessibility Toolbar (GIGW 3.0)**:
+  - [ ] Font size scaling (`A-`, `A`, `A+`) using relative `rem`/`em` typography.
+  - [ ] High-contrast / Dark theme toggle.
+- [ ] **Mobile Reflow (WCAG 1.4.10)**: Responsive layout tested down to 320px viewport without 2D horizontal text scrolling at 400% zoom.
+- [ ] **Touch Target Sizes (WCAG 2.5.8)**: Minimum 44×44px interactive areas for all buttons, tabs, and inputs.
+- [ ] **Semantic Markup**: Proper landmark tags (`<header>`, `<main>`, `<nav>`, `<footer>`), `<h1>`-`<h6>` hierarchy, and `aria-label` / `aria-live` attributes.
 
 ### 3. Interactive Components & Data Sync
-- [x] **Dynamic Google Sheet Tables**:
-  - [x] Reflects latest live data from Google Sheets.
-  - [x] Automatic sheet tab discovery.
-  - [x] Accessible table semantics (`<caption>`, `<th scope="col">`, `<th scope="row">`).
-- [x] **Contact Form**:
-  - [x] Semantic form with explicit `<label for="...">` associations.
-  - [x] Web3Forms integration sending submissions directly to adviser email.
-  - [x] Accessible error states and submission feedback announced via `aria-live`.
+- [ ] **Dynamic Google Sheet Tables**:
+  - [ ] Reflects latest live data from Google Sheets.
+  - [ ] Automatic sheet tab discovery.
+  - [ ] Accessible table semantics (`<caption>`, `<th scope="col">`, `<th scope="row">`).
+- [ ] **Contact Form**:
+  - [ ] Semantic form with explicit `<label for="...">` associations.
+  - [ ] Web3Forms integration sending submissions directly to adviser email.
+  - [ ] Accessible error states and submission feedback announced via `aria-live`.
 
 ### 4. SEO & Analytics
 - [ ] **`robots.txt`**: Allow crawling, point to sitemap.
@@ -168,18 +168,12 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 ## For Future Plans and Development
 
-### 1. Engagement & Change Process
-* **Request Flow**: Client shares requirement (copy, new section, feature ask) → developer scopes and implements → pushed live via `git push` (auto-deploys, no staging step).
-* **Content Requirement**: Client provides final copy/content for advisory or statutory sections; developer handles formatting/markup only.
-* **Feature Requirement**: Any new integration (scheduling, chat, chatbot) needs its own service account/API key, set up by the client or handed to the developer before implementation.
-* **Contact Detail Quality**: Compliance/grievance officer contact should use a professional domain email (not personal Gmail), consistent with published statutory contact details.
-
-### 2. Content Updates & Minor Additions
+### 1. Content Updates & Minor Additions
 * **Turnaround**: Minutes to a few hours depending on complexity.
 * **Process**: Simple code edit in `index.html` (or `config.js`) followed by a `git push`. Automatically deployed to GitHub Pages.
 - [ ] **Content Additions & Copy Updates**: Updating advisory bio, services, fee structure, disclosures, or adding new static sub-pages.
 
-### 3. Feature Additions & Expansion
+### 2. Feature Additions & Expansion
 * **Architecture**: The existing single-file / static architecture is modular and fully expandable. New capabilities can be built right into this application without any need to rework or rebuild from scratch.
 * **Effort**: Requires dedicated implementation/integration coding, but reuses the existing design system and deployment pipeline.
 - [ ] **Appointment Scheduling**: Drop-in embed for Cal.com or Calendly via lightweight script.
