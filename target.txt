@@ -1,0 +1,230 @@
+TARGET.TXT — Compliance & Accessibility Acceptance Checklist
+Source of truth: README.md ("Features & Implementation Checklist", "Standards & Audit Passing Timeline/Plan", "Page Content & Statutory Disclosures")
+Standards targeted: WCAG 2.2 Level AA, GIGW 3.0 (MeitY/NIC), BIS IS 17802:2021, SEBI RIA website-disclosure norms.
+Status wording rule: site/README may only say "conforms to" these standards AFTER passing evidence exists (Axe + Lighthouse + WAVE + manual screen-reader pass, ideally written report). Until then wording stays "targeting".
+
+=====================================================================
+1. SECURITY & STATIC ARCHITECTURE
+=====================================================================
+1.1 Zero server/database footprint
+    - No PHP, no CMS, no DB. Static HTML/JS/CSS only.
+    - Immune by design to SQLi, RCE, DB breach — verify no server-side code crept in.
+1.2 Static CDN delivery
+    - Served via GitHub Pages + Cloudflare edge SSL.
+    - HTTPS enforced (no mixed content, no http:// asset refs).
+1.3 Client-side configuration
+    - All config (SHEET_ID, Web3Forms key) centralized in config.js (README target).
+    - Currently hardcoded in index.html (~line 689 SHEET_ID, ~line 516 Web3Forms key) — reconcile: either extract to real config.js or update README to match reality.
+1.4 Google Sheet publish scope
+    - Publish setting = "View-only, anyone with link" — NOT editable.
+    - Only the intended tab/range published, not entire spreadsheet.
+    - Re-verify this setting periodically (Google can reset sharing scope on re-publish).
+1.5 Contact form spam protection
+    - Web3Forms access key public in client JS — this is by design, not a leak. Concern is spam, not secrecy.
+    - Add one of: honeypot hidden field, or Web3Forms built-in hCaptcha.
+
+=====================================================================
+2. ACCESSIBILITY — WCAG 2.2 AA / GIGW 3.0 / IS 17802
+=====================================================================
+
+2.1 Screen reader support (all major OS/browser combos)
+    - Windows: NVDA (free) — primary test target.
+    - Windows: JAWS.
+    - macOS/iOS: VoiceOver.
+    - Android: TalkBack.
+    - Every interactive control must have accessible name (aria-label / aria-labelledby / associated <label>), correct role, and correct state exposed (WCAG 4.1.2 Name, Role, Value).
+    - Dynamic content changes (form submit result, table refresh) must be announced via aria-live regions (WCAG 4.1.3 Status Messages) — not silent DOM swaps.
+
+2.2 Keyboard navigation — 100% operable without mouse
+    - Every interactive element reachable and operable via Tab/Shift+Tab/Enter/Space/Arrow keys.
+    - Logical tab order matches visual/reading order (no positive tabindex hacks).
+    - No keyboard traps (WCAG 2.1.2) — user can always tab out of any widget (modals, toolbar).
+    - Visible focus indicator on every focusable element (WCAG 2.4.7 / 2.4.11):
+        - Minimum 2px solid outline.
+        - Outline offset so it doesn't get clipped by element edge.
+        - Must use :focus-visible (not just :focus) so mouse clicks don't show it unnecessarily but keyboard use always does.
+    - Contrast of the focus indicator itself must meet 3:1 against adjacent colors (WCAG 1.4.11 Non-text Contrast).
+
+2.3 Skip to main content link
+    - First focusable element on every page.
+    - Visually hidden by default, becomes visible on keyboard focus (not display:none — must be in tab order).
+    - Target = <main> landmark or primary content start.
+    - Satisfies WCAG 2.4.1 (Bypass Blocks).
+
+2.4 Accessibility toolbar (GIGW 3.0 requirement)
+    - Font size scaling controls: A-, A, A+ (at least 3 steps).
+        - Must scale via relative units (rem/em), not px, so it actually affects layout.
+        - Persist user's chosen size across page navigation (localStorage or similar), not just current page.
+    - High-contrast / Dark theme toggle.
+        - Toggle state must persist across pages.
+        - Toggle control itself must be keyboard-operable and screen-reader-announced (aria-pressed or similar).
+    - Toolbar controls must themselves meet full accessibility bar (labelled, keyboard reachable, visible focus).
+
+2.5 Color contrast minimums (WCAG 1.4.3 / 1.4.6 / 1.4.11)
+    - Normal text (<18pt / <14pt bold): minimum 4.5:1 contrast ratio against background.
+    - Large text (≥18pt or ≥14pt bold): minimum 3:1 contrast ratio.
+    - Non-text / graphical elements (icons, borders that convey meaning, chart lines): minimum 3:1.
+    - Focus indicators: minimum 3:1 against adjacent colors.
+    - Verify with Color Contrast Analyser (CCA) tool — not eyeballed.
+    - High-contrast mode (2.4 above) must independently re-verify these ratios in its own palette, not just the default theme.
+
+2.6 Mobile reflow (WCAG 1.4.10)
+    - Layout must work down to 320px CSS width viewport.
+    - No horizontal 2-dimensional scrolling required at 400% browser zoom (only vertical scroll allowed).
+    - Test at 320×256 CSS px per spec (simulates 400% zoom on a 1280×1024 viewport).
+
+2.7 Touch target size (WCAG 2.5.8 minimum, 2.5.5 enhanced)
+    - Minimum 44×44 CSS px for all buttons, links acting as buttons, tabs, checkboxes, and form inputs.
+    - Applies to toolbar controls (2.4) and pagination/table controls (2.8) too.
+    - Adequate spacing between adjacent small targets if 44px can't be met (exception clause) — but default to meeting it directly.
+
+2.8 Semantic markup
+    - Landmark elements: <header>, <nav>, <main>, <footer> — one <main> per page.
+    - Correct heading hierarchy: single <h1>, no skipped levels (h2 before h3 not h4), reflects actual content outline.
+    - aria-label / aria-labelledby on regions/icons/controls lacking visible text (e.g. icon-only buttons).
+    - aria-live="polite" (or "assertive" for errors) on regions that update dynamically (form feedback, live table refresh).
+    - Language attribute set correctly (<html lang="en"> or "hi" etc.) — WCAG 3.1.1.
+
+2.9 Accessibility Statement (footer, per README §6)
+    - States WCAG 2.2 AA conformance target/status honestly (see wording rule at top of this file).
+    - Provides a grievance/contact channel specifically for accessibility issues raised by disabled users.
+
+=====================================================================
+3. INTERACTIVE COMPONENTS & DATA SYNC
+=====================================================================
+
+3.1 Dynamic Google Sheet tables
+    - Reflects latest live data on page load (GViz API pull) — no stale caching beyond page-load lifetime.
+    - Automatic sheet tab discovery (don't hardcode tab names if sheet structure can add/remove tabs).
+    - Accessible table semantics:
+        - <caption> describing table purpose.
+        - <th scope="col"> for column headers.
+        - <th scope="row"> for row headers where applicable.
+        - No layout tables — tables used only for tabular data.
+
+3.2 Contact form
+    - Every input has explicit <label for="id"> (not placeholder-only labeling — WCAG 3.3.2 / 1.3.1 / 4.1.2).
+    - Required fields marked both visually and programmatically (aria-required="true" or required attribute + visible indicator, not color alone).
+    - Web3Forms integration posts directly to adviser's registered email.
+    - Submission feedback (success/error) announced via aria-live, not just a visual toast/message.
+    - Error messages: specific and programmatically associated with the offending field (aria-describedby), not just a generic banner (WCAG 3.3.1 / 3.3.3).
+    - DPDP consent checkbox/notice directly on the form (see §7.9 below) — not merely referenced elsewhere.
+
+=====================================================================
+4. SEO & ANALYTICS
+=====================================================================
+4.1 robots.txt — allow crawling, reference sitemap location.
+4.2 sitemap.xml — matches/pairs with GIGW-required sitemap HTML page (§8 below).
+4.3 Meta tags — <title>, meta description, Open Graph (og:title/og:description/og:image) for link-preview cards.
+4.4 Structured data (optional but recommended) — schema.org FinancialService / Organization JSON-LD.
+4.5 Analytics — privacy-friendly, cookieless option (e.g. Cloudflare Web Analytics) so no cookie-consent banner is triggered.
+
+=====================================================================
+5. STATUTORY DISCLOSURE CONTENT (SEBI RIA REQUIREMENTS)
+=====================================================================
+
+5.1 Adviser identification & registration
+    - RIA Registration Number + validity date.
+    - BASL Membership ID + validity/renewal date.
+    - Registered office address + Corporate Identification Number.
+    - Principal Officer contact details.
+    - Compliance/Grievance Officer contact details.
+    - NISM certification numbers for: Principal Officer, Compliance Officer, and any person associated with investment advice.
+
+5.2 Mandatory SEBI risk disclaimer (verbatim, not paraphrased)
+    - "Investment in securities market are subject to market risks. Read all the related documents carefully before investing."
+    - "Registration granted by SEBI, membership of BASL and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors."
+    - Both required together — the second does not replace the first.
+
+5.3 Investor Charter for Investment Advisers
+    - Must reproduce the CURRENT SEBI-prescribed Investor Charter text as circulated — not a custom summary.
+    - Must be prominently displayed: either its own page, or clearly linked from a prominent location — not buried.
+
+5.4 Grievance redressal & escalation matrix
+    - Multi-tier escalation table.
+    - PRE-LAUNCH GATE: no placeholder day-counts. Client/compliance professional must confirm current first-response and final-resolution windows from the latest SEBI/SCORES 2.0 circular before go-live (windows have changed across circulars historically).
+    - Direct links required:
+        - SEBI SCORES 2.0: https://scores.sebi.gov.in/
+        - SMART ODR Portal: https://smartodr.in/
+
+5.5 Monthly Complaints Redressal Table
+    - Dynamic, rendered from Google Sheets.
+    - Categorized by source: SEBI SCORES / Direct / Others.
+    - Categorized by status: Received / Resolved / Pending.
+    - Published by the 7th of every month (mandatory cadence).
+    - PUBLIC DATA MUST BE AGGREGATE COUNTS ONLY — no client names, phone numbers, emails, complaint descriptions, or any KYC/identifying information in the published sheet/tab. Audit the sheet itself, not just the site code, for leakage.
+
+5.6 Advisory & profile content
+    - About the Adviser: credentials, SEBI registration details, philosophy.
+    - Services & Fee Structure page.
+    - Accessibility Statement (cross-ref §2.9).
+
+5.7 Fee & conflict-of-interest disclosures
+    - PRE-LAUNCH GATE: fee cap figure must be confirmed current before publishing — do not ship with an unconfirmed number.
+        - Reference ceiling as of last check (VERIFY, do not assume still current): fixed-fee mode ₹1,51,000/annum/family; AUA mode 2.5% of AUA.
+        - Confirm which mode (fixed-fee vs AUA-based) actually matches this adviser's real fee model before publishing either figure.
+    - Fee collection: banking channels only, no cash acceptance stated.
+    - Any advance-fee period limit disclosed.
+    - Refund / termination clause for the advisory agreement.
+    - Conflict-of-interest disclosure: associate entities, referral arrangements, if any exist (state "none" explicitly if none).
+
+5.8 GIGW 3.0 mandatory policy pages (all required at launch, not deferred)
+    - [ ] Privacy Policy (full DPDP content — see §5.9).
+    - [ ] Terms of Use / Website Disclaimer (site content ≠ investment advice; no-guarantee-of-returns language; governing law/jurisdiction stated).
+    - [ ] Hyperlinking Policy (disclaimer for outbound links to SCORES/SMART ODR/other external sites).
+    - [ ] Copyright Policy.
+    - [ ] Sitemap page (HTML, human-readable — distinct from sitemap.xml).
+    - [ ] FAQ / Help section.
+    - [ ] Website Feedback mechanism (general UX/content feedback — distinct channel from grievance redressal in §5.4).
+    - [ ] Cookie Disclosure (covers Cloudflare edge cookies) — may fold into Privacy Policy.
+
+5.9 Privacy Policy / DPDP content requirements (contact form specifically)
+    - What is collected: name, email, phone, message — confirm exact field list matches the built form, don't assume.
+    - Where stored: submissions route through Web3Forms to adviser email; state whether anything also lands in Google Sheets.
+    - Who processes it: name Web3Forms and Google explicitly as third-party processors.
+    - Retention period: how long submissions are kept and where (inbox / sheet / both).
+    - Correction/deletion request process: named contact or channel for data-subject requests.
+    - Consent notice AT POINT OF COLLECTION: checkbox or visible notice on the contact form itself (e.g. "By submitting, you consent to your data being processed as per our Privacy Policy") — a mention only in the separate policy page is NOT sufficient.
+    - Third-party disclosure statement: explicit that data leaves site infrastructure to Web3Forms/Google.
+
+5.10 Advertisement code compliance (content review gate — applies to whole site, not just ads)
+    Before publishing ANY page copy, verify it does NOT contain:
+    - "Guaranteed returns" or return-certainty language.
+    - "Best investment advisor" / superlative or unsubstantiated ranking claims.
+    - Misleading or cherry-picked past-performance figures.
+    - Promises or projections of future performance.
+    - Testimonials creating a prohibited or misleading impression.
+    - "SEBI approved" or phrasing implying SEBI endorsement (registration ≠ endorsement).
+    - Re-run this check on every content edit, not just at initial launch.
+
+=====================================================================
+6. PRE-LAUNCH GATES (must be resolved before go-live, not left as TODO)
+=====================================================================
+    [ ] Grievance escalation timelines confirmed against latest SEBI/SCORES 2.0 circular (§5.4).
+    [ ] Fee cap figure confirmed current + correct mode (fixed-fee vs AUA) selected (§5.7).
+    [ ] Google Sheet sharing scope re-verified as view-only, correct tab/range (§1.4).
+    [ ] Monthly complaint sheet contains aggregate counts only, no PII (§5.5).
+    [ ] Advertisement-code content scan passed on all page copy (§5.10).
+
+=====================================================================
+7. EVIDENCE / AUDIT REQUIRED BEFORE CLAIMING "CONFORMS TO" (not just "targets")
+=====================================================================
+    [ ] Axe DevTools automated scan — passing, WCAG 2.2 AA ruleset.
+    [ ] Google Lighthouse — Accessibility score 95–100, Best Practices score 95–100.
+    [ ] WAVE — visual inspection of ARIA landmarks, label bindings, contrast, clean of errors.
+    [ ] Color Contrast Analyser (CCA) — every text/graphic/focus-indicator pairing checked against §2.5 ratios.
+    [ ] Manual screen-reader pass — NVDA, VoiceOver at minimum (JAWS/TalkBack if available).
+    [ ] Written test report/summary of what was checked and what passed (ideally, per README).
+    Optional formal certification (not required to launch, but noted for future):
+        - STQC Directorate (MeitY) — Certified Quality Website (CQW) seal for GIGW/IS 17802.
+        - CERT-In empaneled auditor — VAPT for Safe-to-Host certification.
+        - IAAP-certified auditor (e.g. BarrierBreak, Deque) — formal Accessibility Conformance Report (ACR).
+
+=====================================================================
+8. OWNERSHIP / OPERATIONAL ITEMS (not compliance content, but blockers to launch)
+=====================================================================
+    [ ] GitHub repo/org ownership assigned + 2FA enabled.
+    [ ] Cloudflare account ownership assigned + 2FA enabled.
+    [ ] Web3Forms account ownership assigned + 2FA enabled.
+    [ ] Google Sheet ownership assigned (whoever maintains site day-to-day should hold this + Web3Forms).
+    [ ] "Last updated" date stamp present on statutory/disclosure pages (GIGW soft requirement).

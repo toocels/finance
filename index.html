@@ -4,834 +4,682 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us — Finance Website</title>
-  <meta name="description" content="Get in touch with our SEBI-registered financial advisory team.">
+
+  <!-- Primary Meta Tags -->
+  <title>Jeeves Investment Advisors | SEBI Registered Investment Adviser (RIA)</title>
+  <meta name="title" content="Jeeves Investment Advisors | SEBI Registered Investment Adviser">
+  <meta name="description"
+    content="Fee-only, SEBI-registered investment advisory providing unbiased financial planning, risk profiling, and goal-aligned portfolio strategy in Chennai, India. Reg No. INA000023126.">
+  <meta name="keywords"
+    content="SEBI Registered Investment Adviser, Fee Only Financial Planner, Wealth Management Chennai, RIA India, Investment Planning">
+  <meta name="author" content="Madhu Srinivas V">
+  <meta name="theme-color" content="#12528f">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jeevesinvadvisors.in/">
+  <meta property="og:title" content="Jeeves Investment Advisors | Fee-Only SEBI RIA">
+  <meta property="og:description"
+    content="Conflict-free financial advisory and investment planning directly aligned with your life goals. SEBI Reg. No. INA000023126.">
+
+  <!-- Google Fonts & Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #f8fafc;
-      color: #334155;
-      min-height: 100vh;
-    }
-
-    /* ── Header ── */
-    header {
-      background: #1968B1;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .logo span {
-      color: #F1BF39;
-    }
-
-    /* ── Hero banner ── */
-    .hero {
-      background: linear-gradient(135deg, #1968B1 0%, #2575ba 50%, #3482c3 100%);
-      padding: 60px 20px 50px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-      background-size: 36px 36px;
-      pointer-events: none;
-    }
-
-    .hero h1 {
-      color: white;
-      font-size: clamp(1.8rem, 5vw, 2.75rem);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      position: relative;
-    }
-
-    .hero p {
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 1.05rem;
-      position: relative;
-    }
-
-    /* ── Main layout ── */
-    main {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 50px 20px 60px;
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 2.5rem;
-      align-items: start;
-    }
-
-    @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ── Form card ── */
-    .form-card {
-      background: white;
-      border-radius: 18px;
-      padding: 2rem;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-    }
-
-    .form-card h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 0.25rem;
-    }
-
-    .form-card .subtitle {
-      font-size: 0.875rem;
-      color: #64748b;
-      margin-bottom: 1.5rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    @media (max-width: 500px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #475569;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    label .req {
-      color: #dc2626;
-      margin-left: 2px;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      background: #f8fafc;
-      border: 2px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 11px 14px;
-      color: #1e293b;
-      font-size: 0.95rem;
-      font-family: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-      outline: none;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #1968B1;
-      box-shadow: 0 0 0 3px rgba(25, 104, 177, 0.12);
-      background: white;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    select {
-      cursor: pointer;
-    }
-
-    .submit-btn {
-      width: 100%;
-      margin-top: 0.25rem;
-      padding: 13px;
-      background: linear-gradient(135deg, #1968B1, #2575ba);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .submit-btn:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(25, 104, 177, 0.3);
-    }
-
-    .submit-btn:active {
-      transform: translateY(0);
-    }
-
-    .submit-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    /* Success / error messages */
-    .alert {
-      display: none;
-      margin-top: 1rem;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .alert.success {
-      background: #f0fdf4;
-      border: 1px solid #86efac;
-      color: #166534;
-    }
-
-    .alert.error {
-      background: #fef2f2;
-      border: 1px solid #fca5a5;
-      color: #991b1b;
-    }
-
-    /* ── Info sidebar ── */
-    .info-card {
-      background: white;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .info-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-    }
-
-    .info-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .info-icon.blue {
-      background: linear-gradient(135deg, #1968B1, #3482c3);
-    }
-
-    .info-icon.green {
-      background: linear-gradient(135deg, #6FA84E, #8BC34A);
-    }
-
-    .info-icon.gold {
-      background: linear-gradient(135deg, #F1BF39, #f5d06e);
-    }
-
-    .info-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #64748b;
-      margin-bottom: 3px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .info-value {
-      font-size: 0.9rem;
-      color: #1e293b;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    .info-value:hover {
-      color: #1968B1;
-    }
-
-    .calendly-card {
-      background: linear-gradient(135deg, #1968B1, #2575ba);
-      border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-      margin-top: 1.25rem;
-    }
-
-    .calendly-card h3 {
-      color: white;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-    }
-
-    .calendly-card p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.83rem;
-      margin-bottom: 1rem;
-    }
-
-    .calendly-btn {
-      display: inline-block;
-      background: #F1BF39;
-      color: #1e293b;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 10px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .calendly-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    .sebi-note {
-      text-align: center;
-      margin-top: 1rem;
-      padding: 0.85rem;
-      background: #f0f9ff;
-      border: 1px solid rgba(25, 104, 177, 0.1);
-      border-radius: 10px;
-      font-size: 0.78rem;
-      color: #475569;
-    }
-
-    .sebi-note strong {
-      color: #1968B1;
-    }
-
-    /* ── Data tables section ── */
-    .data-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
-    }
-
-    .data-section h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 1.25rem;
-    }
-
-    .sheet-block {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, .07);
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-    }
-
-    .sheet-header {
-      background: linear-gradient(135deg, #1968B1, #2575ba);
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-    }
-
-    .sheet-title {
-      color: white;
-      font-size: 1rem;
-      font-weight: 700;
-      flex: 1;
-    }
-
-    .sheet-badge {
-      background: rgba(241, 191, 57, .25);
-      color: #F1BF39;
-      border: 1px solid rgba(241, 191, 57, .4);
-      border-radius: 50px;
-      padding: 3px 10px;
-      font-size: .72rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .875rem;
-    }
-
-    thead tr {
-      background: #f0f9ff;
-      border-bottom: 2px solid #e2e8f0;
-    }
-
-    thead th {
-      padding: 11px 16px;
-      text-align: left;
-      font-size: .75rem;
-      font-weight: 700;
-      color: #1968B1;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      white-space: nowrap;
-    }
-
-    tbody tr {
-      border-bottom: 1px solid #f1f5f9;
-      transition: background .15s;
-    }
-
-    tbody tr:last-child {
-      border-bottom: none;
-    }
-
-    tbody tr:hover {
-      background: #f8fafc;
-    }
-
-    tbody td {
-      padding: 10px 16px;
-      color: #334155;
-      vertical-align: middle;
-    }
-
-    .state-box {
-      padding: 3rem;
-      text-align: center;
-      color: #94a3b8;
-    }
-
-    .state-icon {
-      font-size: 2.5rem;
-      margin-bottom: .75rem;
-      display: block;
-    }
-
-    .state-box p {
-      font-size: .9rem;
-      line-height: 1.6;
-    }
-
-    .state-box.error p {
-      color: #dc2626;
-    }
-
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid #e2e8f0;
-      border-top-color: #1968B1;
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-      margin: 0 auto 1rem;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* ── Footer ── */
-    footer {
-      background: #f1f5f9;
-      border-top: 1px solid #e2e8f0;
-      text-align: center;
-      padding: 1.25rem;
-      font-size: 0.78rem;
-      color: #64748b;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header>
-    <a href="#" class="logo">Finance <span>Website</span></a>
+  <!-- Accessible Skip to Main Content (WCAG 2.4.1) -->
+  <a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+  <!-- Top Accessibility & SEBI Credentials Bar (GIGW 3.0 / WCAG) -->
+  <aside class="top-toolbar" aria-label="Accessibility and Regulatory Toolbar">
+    <div class="toolbar-inner">
+      <div class="sebi-badge-pill">
+        <span aria-hidden="true">🛡️</span>
+        <span>SEBI Reg. No.: <strong>INA000023126</strong> (Individual RIA)</span>
+      </div>
+
+      <div class="toolbar-controls" role="region" aria-label="Accessibility Options">
+        <span style="font-size:0.75rem; margin-right: 2px;">Text Size:</span>
+        <button type="button" class="btn-toolbar" id="btn-font-sm" aria-label="Decrease text size">A-</button>
+        <button type="button" class="btn-toolbar active" id="btn-font-md" aria-label="Normal text size">A</button>
+        <button type="button" class="btn-toolbar" id="btn-font-lg" aria-label="Increase text size">A+</button>
+
+        <span style="font-size:0.75rem; margin: 0 4px 0 8px;">Theme:</span>
+        <button type="button" class="btn-toolbar" id="btn-theme-default"
+          aria-label="Standard Light Theme">Standard</button>
+        <button type="button" class="btn-toolbar" id="btn-theme-contrast" aria-label="Toggle High Contrast Mode">High
+          Contrast</button>
+        <button type="button" class="btn-toolbar" id="btn-theme-dark" aria-label="Toggle Dark Mode">Dark</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand-logo" aria-label="Jeeves Investment Advisors Homepage">
+        <div class="brand-icon" aria-hidden="true">J</div>
+        <div class="brand-text">
+          <span class="brand-name">Jeeves Investment Advisors</span>
+          <span class="brand-tag">SEBI Registered Investment Adviser</span>
+        </div>
+      </a>
+
+      <!-- Mobile Nav Toggle -->
+      <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mainNav"
+        aria-label="Toggle Navigation Menu">
+        ☰
+      </button>
+
+      <!-- Main Navigation -->
+      <nav class="main-nav" id="mainNav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link">Who We Are</a></li>
+          <li><a href="#founder" class="nav-link">Founder</a></li>
+          <li><a href="#services" class="nav-link">Advisory Process</a></li>
+          <li><a href="#approach" class="nav-link">Our Approach</a></li>
+          <li><a href="#compliance" class="nav-link">Regulatory Disclosures</a></li>
+          <li><a href="#complaints" class="nav-link">Complaints Data</a></li>
+          <li><a href="#contact" class="nav-link nav-cta">Get in Touch</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Get in Touch</h1>
-    <p>Have questions about financial planning? We'd love to hear from you.</p>
-  </section>
-
-  <!-- Main content -->
-  <main>
-
-    <!-- Contact Form -->
-    <div class="form-card">
-      <h2>Send Us a Message</h2>
-      <p class="subtitle">We typically respond within 1–2 business days.</p>
-
-      <!--
-        WEB3FORMS SETUP:
-        1. Go to https://web3forms.com and sign up (free)
-        2. Get your Access Key from the dashboard
-        3. Replace "YOUR_WEB3FORMS_ACCESS_KEY" below with your actual key
-      -->
-      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-
-        <!-- Web3Forms required hidden inputs -->
-        <input type="hidden" name="access_key" value="8bcebccf-7d29-41eb-b965-a63ec1e67888">
-        <input type="hidden" name="subject" value="New Contact Form Submission — Financial Advisory">
-        <input type="hidden" name="from_name" value="Financial Advisory Website">
-        <input type="checkbox" name="botcheck" style="display:none;">
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Full Name <span class="req">*</span></label>
-            <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address <span class="req">*</span></label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="+91 98xxx xxxxx" autocomplete="tel">
-          </div>
-          <div class="form-group">
-            <label for="subject">Topic</label>
-            <select id="subject" name="topic">
-              <option value="">Select a topic</option>
-              <option>Financial Planning</option>
-              <option>Investment Advisory</option>
-              <option>Retirement Planning</option>
-              <option>NRI Services</option>
-              <option>Second Opinion on Investments</option>
-              <option>General Enquiry</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Your Message <span class="req">*</span></label>
-          <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">
-          <span>&#9993;</span> Send Message
-        </button>
-
-        <div class="alert success" id="successMsg">
-          ✅ Message sent successfully! We'll get back to you within 1–2 business days.
-        </div>
-        <div class="alert error" id="errorMsg">
-          ❌ Something went wrong. Please try again or email us directly.
-        </div>
-      </form>
+  <!-- SEBI Mandatory Risk Disclaimer Banner -->
+  <div class="sebi-statutory-banner" role="region" aria-label="Mandatory Regulatory Disclaimer">
+    <div class="statutory-banner-inner">
+      <span class="statutory-icon" aria-hidden="true">⚠️</span>
+      <p>
+        <strong>Mandatory SEBI Risk Disclaimer:</strong> Investment in securities market are subject to market risks.
+        Read all the related documents carefully before investing. Registration granted by SEBI, membership of BASL and
+        certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns
+        to investors.
+      </p>
     </div>
+  </div>
 
-    <!-- Sidebar info -->
-    <div>
-      <div class="info-card">
-        <div class="info-icon blue">📞</div>
-        <div>
-          <div class="info-label">Call Us</div>
-          <a href="tel:+917083346003" class="info-value">+91 70833 46003</a>
+  <main id="main-content">
+
+    <!-- ── Hero Section ── -->
+    <section id="home" class="hero-section" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span>Fee-Only & 100% Conflict-Free Advisory</span>
+          </div>
+          <h1 id="hero-heading" class="hero-title">
+            Unbiased Financial Guidance Aligned With Your Life Goals
+          </h1>
+          <p class="hero-subtitle">
+            We earn directly and only from our clients. Zero commissions from banks, mutual funds, or product issuers —
+            ensuring pure, fiduciary advice crafted exclusively for your financial well-being.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary-action">
+              <span>✉️</span> Get in Touch
+            </a>
+            <a href="#services" class="btn-outline-action">
+              <span>📋</span> Explore Our Process
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="info-card">
-        <div class="info-icon green">✉️</div>
-        <div>
-          <div class="info-label">Email Us</div>
-          <a href="mailto:contact@yourdomain.com" class="info-value">contact@yourdomain.com</a>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <div class="info-icon gold">📍</div>
-        <div>
-          <div class="info-label">Office</div>
-          <div class="info-value" style="font-weight:400; font-size:0.85rem; line-height:1.5;">
-            Mumbai, Maharashtra<br>India — 400066
+        <div class="hero-card-trust" aria-label="Core Advisory Principles">
+          <div class="trust-item">
+            <div class="trust-icon" aria-hidden="true">🎯</div>
+            <div>
+              <div class="trust-title">Goal-Centric Planning</div>
+              <div class="trust-desc">Translating your life milestones into structured, measurable financial targets.
+              </div>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon" aria-hidden="true">⚖️</div>
+            <div>
+              <div class="trust-title">Zero Conflict of Interest</div>
+              <div class="trust-desc">No commission kickbacks from any financial product or distributor.</div>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon" aria-hidden="true">📜</div>
+            <div>
+              <div class="trust-title">SEBI Regulated Fiduciary</div>
+              <div class="trust-desc">Licensed individual investment adviser bound by strict fiduciary regulations.
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="calendly-card">
-        <h3>Prefer a Direct Conversation?</h3>
-        <p>Book a free 30-min discovery call at your convenience.</p>
-        <!-- Replace with your actual Calendly link -->
-        <a href="https://calendly.com/your-link/30min" target="_blank" rel="noopener noreferrer" class="calendly-btn">
-          📅 Book an Appointment
-        </a>
-      </div>
+    <!-- ── Who We Are Section ── -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">About Us</span>
+          <h2 id="about-heading" class="section-title">Who We Are</h2>
+          <p class="section-subtitle">
+            Committed to pure, transparent, and fee-only investment advisory.
+          </p>
+        </div>
 
-      <div class="sebi-note">
-        🛡️ <strong>SEBI Registered</strong> Investment Adviser<br>
-        Reg. No.: <strong>INA000XXXXXXX</strong>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">🏛️</div>
+            <h3 class="card-title">SEBI-Registered Investment Adviser</h3>
+            <p class="card-desc">
+              Jeeves Investment Advisors is a SEBI-registered investment advisor who provides advice that is most
+              suitable for our clients. We earn directly and only from our clients. We do not take commissions from any
+              financial institution like banks, Mutual Funds, Insurers etc.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">💎</div>
+            <h3 class="card-title">Unbiased & Objective Advice</h3>
+            <p class="card-desc">
+              This eliminates conflicts of interest and ensures advice that is truly unbiased and suitable to your life
+              goals. Every recommendation is tailored strictly to your risk profile, liquidity requirements, and
+              timeline.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- ── About The Founder Section ── -->
+    <section id="founder" class="section section-alt" aria-labelledby="founder-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">Leadership</span>
+          <h2 id="founder-heading" class="section-title">About the Founder</h2>
+          <p class="section-subtitle">
+            Deep analytical rigor combined with decade-long financial planning expertise.
+          </p>
+        </div>
+
+        <div class="founder-card">
+          <div class="founder-meta">
+            <div class="founder-avatar" aria-hidden="true">MS</div>
+            <div>
+              <h3 class="founder-name">Madhu Srinivas V</h3>
+              <div class="founder-role">Proprietor & Principal Officer — Jeeves Investment Advisors</div>
+              <div class="founder-reg">SEBI Registration No. INA000023126</div>
+            </div>
+          </div>
+
+          <p class="card-desc" style="font-size:1.05rem;">
+            With over 10 years of experience in the fields of finance and analytics, he has proven expertise in
+            portfolio analytics, risk management, financial planning, investments, and wealth management.
+          </p>
+
+          <div class="highlight-box">
+            <div class="highlight-title">Fiduciary Dedication</div>
+            <div class="highlight-text">
+              Directly advising retail and high-net-worth investors with institutional-grade portfolio analytics,
+              objective asset allocation models, and rigorous risk management standards.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The Advisory Process / Services ── -->
+    <section id="services" class="section" aria-labelledby="services-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">Our Services</span>
+          <h2 id="services-heading" class="section-title">The Advisory Process</h2>
+          <p class="section-subtitle">
+            A comprehensive, disciplined framework designed to secure your financial future.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Service 1 -->
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">🎯</div>
+            <h3 class="card-title">Connecting with Clients</h3>
+            <p class="card-desc">
+              Identifying your life goals and translating them into clear financial milestones. We conduct comprehensive
+              risk profiling and craft a holistic, suitable investment and risk management strategy tailored to your
+              situation.
+            </p>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">📈</div>
+            <h3 class="card-title">Investment Planning</h3>
+            <p class="card-desc">
+              Constructing goal-oriented, risk-adjusted portfolios using transparent and cost-effective vehicles (direct
+              mutual funds and equity/debt allocations), with disciplined periodic rebalancing to keep you on track.
+            </p>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">🏖️</div>
+            <h3 class="card-title">Retirement Savings</h3>
+            <p class="card-desc">
+              Structuring sustainable retirement accumulation models and post-retirement cash flow strategies to ensure
+              financial independence throughout your golden years without relying on high-cost opaque products.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Our Approach (Step Workflow) ── -->
+    <section id="approach" class="section section-alt" aria-labelledby="approach-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">Methodology</span>
+          <h2 id="approach-heading" class="section-title">Our Approach</h2>
+          <p class="section-subtitle">
+            A structured, 4-step collaborative journey from discovery to lifelong wealth management.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <!-- Step 1 -->
+          <div class="process-card">
+            <div class="process-step-num" aria-label="Step 1">1</div>
+            <h3 class="process-title">Discovery & Goal Mapping</h3>
+            <p class="process-desc">
+              We begin by understanding your values, cash flows, family needs, and distinct timeline for short-term and
+              long-term milestones.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-card">
+            <div class="process-step-num" aria-label="Step 2">2</div>
+            <h3 class="process-title">Risk Profiling</h3>
+            <p class="process-desc">
+              Evaluating your risk capacity and risk tolerance through quantitative and qualitative assessments to
+              define optimal asset allocation.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-card">
+            <div class="process-step-num" aria-label="Step 3">3</div>
+            <h3 class="process-title">Strategy Formulation</h3>
+            <p class="process-desc">
+              Drafting an unbiased, tailored investment roadmap with clear action points, optimized asset allocation,
+              and emergency reserves.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="process-card">
+            <div class="process-step-num" aria-label="Step 4">4</div>
+            <h3 class="process-title">Review & Rebalance</h3>
+            <p class="process-desc">
+              Continuous monitoring and periodic reviews to adapt your portfolio to life transitions and significant
+              market shifts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Statutory Compliance, Investor Charter & Grievance Redressal ── -->
+    <section id="compliance" class="section" aria-labelledby="compliance-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">SEBI Disclosures</span>
+          <h2 id="compliance-heading" class="section-title">Regulatory Disclosures & Investor Charter</h2>
+          <p class="section-subtitle">
+            Mandatory disclosures in accordance with SEBI (Investment Advisers) Regulations.
+          </p>
+        </div>
+
+        <div class="compliance-grid">
+
+          <!-- Registration Details Card -->
+          <div class="disclosure-card">
+            <h3><span>📋</span> Registration & Adviser Identification</h3>
+            <ul class="disclosure-list">
+              <li>
+                <span class="disclosure-label">Name of Investment Adviser</span>
+                <span class="disclosure-value">Madhu Srinivas V (Proprietor, Jeeves Investment Advisors)</span>
+              </li>
+              <li>
+                <span class="disclosure-label">Type of Registration</span>
+                <span class="disclosure-value">Individual SEBI-Registered Investment Adviser (RIA)</span>
+              </li>
+              <li>
+                <span class="disclosure-label">SEBI Registration Number</span>
+                <span class="disclosure-value"><strong>INA000023126</strong></span>
+              </li>
+              <li>
+                <span class="disclosure-label">Validity of Registration</span>
+                <span class="disclosure-value">Valid from 10/08/2026 till it is suspended or cancelled in accordance
+                  with the Regulations</span>
+              </li>
+              <li>
+                <span class="disclosure-label">Registered Office Address</span>
+                <span class="disclosure-value">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu</span>
+              </li>
+              <li>
+                <span class="disclosure-label">Contact Details / Mobile</span>
+                <span class="disclosure-value">+91 9962284289 | vmadhusrinivas@gmail.com</span>
+              </li>
+              <li>
+                <span class="disclosure-label">SEBI Regional Office</span>
+                <span class="disclosure-value">7th Floor, 756-L, Anna Salai, Chennai – 600002, Tamil Nadu</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Grievance Redressal Card -->
+          <div class="disclosure-card">
+            <h3><span>🛡️</span> Grievance Redressal & Escalation</h3>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom: 1rem;">
+              Clients with any grievances can approach our structured escalation mechanism:
+            </p>
+
+            <ul class="disclosure-list">
+              <li>
+                <span class="disclosure-label">Tier 1: Principal & Grievance Officer</span>
+                <span class="disclosure-value">
+                  Madhu Srinivas V<br>
+                  37/1 Rajabather Street, T Nagar, Chennai – 600017<br>
+                  Email: <a href="mailto:vmadhusrinivas@gmail.com">vmadhusrinivas@gmail.com</a> | Phone: +91 9962284289
+                </span>
+              </li>
+              <li>
+                <span class="disclosure-label">Tier 2: SEBI SCORES 2.0 Portal</span>
+                <span class="disclosure-value">
+                  If the grievance is not redressed within specified regulatory timelines, lodge complaints on SEBI
+                  SCORES:<br>
+                  <a href="https://scores.sebi.gov.in/" target="_blank"
+                    rel="noopener noreferrer">https://scores.sebi.gov.in/ (opens in new tab)</a>
+                </span>
+              </li>
+              <li>
+                <span class="disclosure-label">Tier 3: SMART ODR Portal</span>
+                <span class="disclosure-value">
+                  Online Dispute Resolution Portal for the Indian Securities Market:<br>
+                  <a href="https://smartodr.in/" target="_blank" rel="noopener noreferrer">https://smartodr.in/ (opens
+                    in new tab)</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Investor Charter Summary Card -->
+        <div class="card" style="margin-top: 2rem;">
+          <h3 class="card-title">Investor Charter for Investment Advisers (Annexure F)</h3>
+          <p class="card-desc" style="margin-bottom: 1rem;">
+            As prescribed by SEBI circulars, investors are entitled to:
+          </p>
+          <div class="grid-2">
+            <div>
+              <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:0.5rem; color:var(--primary);">A. Rights of
+                Investors</h4>
+              <ul style="padding-left:1.25rem; font-size:0.875rem; color:var(--text-muted); line-height:1.6;">
+                <li>Receive unbiased and tailored investment advice based on personal risk profile.</li>
+                <li>Receive all disclosures regarding fees, conflicts of interest, and regulatory details.</li>
+                <li>Transparent fee payment exclusively through banking channels with receipts.</li>
+                <li>Prompt grievance redressal via adviser and official regulatory portals (SCORES / SMART ODR).</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:0.5rem; color:var(--primary);">B.
+                Responsibilities of Investors</h4>
+              <ul style="padding-left:1.25rem; font-size:0.875rem; color:var(--text-muted); line-height:1.6;">
+                <li>Provide accurate, complete financial and risk profiling information.</li>
+                <li>Sign formal client agreement and adhere to mutually agreed terms.</li>
+                <li>Never share banking/trading credentials or permit discretionary trading.</li>
+                <li>Verify SEBI registration credentials before engaging an investment adviser.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Complaints Data Section (Dynamic Google Sheet) ── -->
+    <section id="complaints" class="section section-alt" aria-labelledby="complaints-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">Public Accountability</span>
+          <h2 id="complaints-heading" class="section-title">Complaints Data</h2>
+          <p class="section-subtitle">
+            Monthly complaint status updated in accordance with SEBI Master Circular (Annexure C).
+          </p>
+        </div>
+
+        <!-- Dynamic Tables Container -->
+        <div id="complaints-app" aria-live="polite">
+          <div class="sheet-block">
+            <div class="state-box">
+              <div class="spinner" aria-hidden="true"></div>
+              <p>Loading live SEBI complaint data…</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact Section ── -->
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">Connect</span>
+          <h2 id="contact-heading" class="section-title">Get in Touch</h2>
+          <p class="section-subtitle">
+            Have questions regarding financial planning or fee-only advisory? Reach out to us.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+
+          <!-- Contact Form (Web3Forms) -->
+          <div class="form-card">
+            <h2>Send Us a Message</h2>
+            <p class="subtitle">We typically respond within 1–2 business days.</p>
+
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <!-- Web3Forms Hidden Tokens -->
+              <input type="hidden" name="access_key" value="8bcebccf-7d29-41eb-b965-a63ec1e67888">
+              <input type="hidden" name="subject" value="New Advisory Enquiry — Jeeves Investment Advisors">
+              <input type="hidden" name="from_name" value="Jeeves Investment Advisors Website">
+              <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name"
+                    aria-required="true">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email"
+                    aria-required="true">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+91 98xxx xxxxx" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                  <label for="topic">Topic of Discussion</label>
+                  <select id="topic" name="topic">
+                    <option value="">Select a topic</option>
+                    <option value="Comprehensive Financial Planning">Comprehensive Financial Planning</option>
+                    <option value="Investment Advisory & Portfolio Review">Investment Advisory &amp; Portfolio Review
+                    </option>
+                    <option value="Retirement Savings Strategy">Retirement Savings Strategy</option>
+                    <option value="Second Opinion on Investments">Second Opinion on Investments</option>
+                    <option value="General Enquiry">General Enquiry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Your Message <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="message" name="message"
+                  placeholder="Tell us about your goals and how we can assist you..." required
+                  aria-required="true"></textarea>
+              </div>
+
+              <div class="dpdp-consent">
+                <p>
+                  🔒 <strong>Privacy &amp; Data Protection:</strong> By submitting this form, you agree that your
+                  contact information will be used solely for responding to your enquiry in accordance with our data
+                  protection practices.
+                </p>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submitBtn">
+                <span aria-hidden="true">✉️</span> Send Message
+              </button>
+
+              <div class="alert success" id="successMsg" role="alert" tabindex="-1">
+                ✅ Message sent successfully! We will get back to you within 1–2 business days.
+              </div>
+              <div class="alert error" id="errorMsg" role="alert" tabindex="-1">
+                ❌ Something went wrong. Please try again or email us directly at <a
+                  href="mailto:vmadhusrinivas@gmail.com">vmadhusrinivas@gmail.com</a>.
+              </div>
+            </form>
+          </div>
+
+          <!-- Sidebar Information Cards -->
+          <div>
+            <div class="info-card">
+              <div class="info-icon blue" aria-hidden="true">📞</div>
+              <div>
+                <div class="info-label">Call / Mobile</div>
+                <a href="tel:+919962284289" class="info-value">+91 99622 84289</a>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon green" aria-hidden="true">✉️</div>
+              <div>
+                <div class="info-label">Email Us</div>
+                <a href="mailto:vmadhusrinivas@gmail.com" class="info-value">vmadhusrinivas@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon gold" aria-hidden="true">📍</div>
+              <div>
+                <div class="info-label">Office Address</div>
+                <div class="info-value" style="font-weight:400; font-size:0.875rem; line-height:1.5;">
+                  37/1 Rajabather Street, T Nagar<br>
+                  Chennai – 600017, Tamil Nadu, India
+                </div>
+              </div>
+            </div>
+
+            <div class="calendly-card">
+              <h3>Prefer Direct Scheduling?</h3>
+              <p>Schedule an introductory discovery call at your convenience.</p>
+              <a href="mailto:vmadhusrinivas@gmail.com?subject=Discovery%20Call%20Request" class="calendly-btn">
+                <span aria-hidden="true">📅</span> Request an Appointment
+              </a>
+            </div>
+
+            <div class="card" style="margin-top: 1.25rem; text-align: center; padding: 1.25rem;">
+              <div style="font-size:0.8125rem; color:var(--text-muted);">
+                🛡️ <strong>SEBI Registered Investment Adviser</strong><br>
+                Reg. No.: <strong>INA000023126</strong><br>
+                Proprietor: <strong>Madhu Srinivas V</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
   </main>
 
-  <!-- Data Tables (from public Google Sheet) -->
-  <section class="data-section">
-    <h2>Data Tables</h2>
-    <div id="app">
-      <div class="sheet-block">
-        <div class="state-box">
-          <div class="spinner"></div>
-          <p>Loading sheets…</p>
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-accessibility-claim">
+        <strong>Accessibility &amp; Standards Statement:</strong> This website is built targeting <strong>WCAG 2.2 Level
+          AA</strong>, <strong>GIGW 3.0 (Guidelines for Indian Government Websites)</strong>, and <strong>BIS IS
+          17802:2021</strong> accessibility standards. For accessibility assistance or feedback, please contact <a
+          href="mailto:vmadhusrinivas@gmail.com">vmadhusrinivas@gmail.com</a>.
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Jeeves Investment Advisors</h4>
+          <p style="font-size:0.875rem; line-height:1.6; margin-bottom:1rem;">
+            SEBI-registered fee-only investment advisory. Purely client-compensated advice eliminating conflicts of
+            interest.
+          </p>
+          <p style="font-size:0.8125rem; color:var(--text-light);">
+            Principal Officer: Madhu Srinivas V<br>
+            37/1 Rajabather Street, T Nagar, Chennai – 600017
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">Who We Are</a></li>
+            <li><a href="#founder">About Founder</a></li>
+            <li><a href="#services">The Advisory Process</a></li>
+            <li><a href="#approach">Our Approach</a></li>
+            <li><a href="#compliance">SEBI Disclosures</a></li>
+            <li><a href="#complaints">Complaints Data</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Regulatory Portals</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI Official Portal ↗</a>
+            </li>
+            <li><a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI SCORES 2.0 ↗</a>
+            </li>
+            <li><a href="https://smartodr.in/" target="_blank" rel="noopener noreferrer">SMART ODR Portal ↗</a></li>
+            <li><a href="https://www.nism.ac.in/" target="_blank" rel="noopener noreferrer">NISM Certifications ↗</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
 
-  <footer>
-    &copy; 2026 Finance Website. All Rights Reserved. | SEBI Reg. No.: INA000XXXXXXX
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Jeeves Investment Advisors. All Rights Reserved. | SEBI Reg. No.: INA000023126
+        </div>
+        <div>
+          URL: <strong>jeevesinvadvisors.in</strong>
+        </div>
+      </div>
+
+    </div>
   </footer>
 
-  <script>
-    // ── Contact form (Web3Forms) ─────────────────────────────────────────
-    const form = document.getElementById('contactForm');
-    const btn = document.getElementById('submitBtn');
-    const successMsg = document.getElementById('successMsg');
-    const errorMsg = document.getElementById('errorMsg');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      btn.disabled = true;
-      btn.innerHTML = '<span>⏳</span> Sending…';
-      successMsg.style.display = 'none';
-      errorMsg.style.display = 'none';
-
-      const formData = new FormData(form);
-
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData,
-        });
-
-        const json = await res.json();
-
-        if (json.success) {
-          successMsg.style.display = 'block';
-          form.reset();
-        } else {
-          throw new Error(json.message || 'Submission failed');
-        }
-      } catch (err) {
-        console.error(err);
-        errorMsg.style.display = 'block';
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = '<span>&#9993;</span> Send Message';
-      }
-    });
-  </script>
-
-  <script>
-    // ── Data tables (public Google Sheet, no backend, no API key) ───────
-    //
-    //  REQUIRED — one-time setup in Google Sheets:
-    //  File → Share → Anyone with the link → Viewer. That's it.
-    //
-    //  Tabs are discovered automatically at load time — add, remove, or
-    //  rename tabs in the sheet and this page picks them up, no code change.
-    //
-    const SHEET_ID = '1zl0Bigjsfs22mPySj9F1HBiuSPlg6zwvgZclODPGSyM'; // from .env GOOGLE_SHEET_URL
-
-    const app = document.getElementById('app');
-
-    const TAB_CACHE_KEY = `sheet-tabs:${SHEET_ID}`;
-    const TAB_CACHE_TTL_MS = 10 * 60 * 1000; // sheet tab list rarely changes
-
-    async function listTabs(id) {
-      try {
-        const cached = JSON.parse(localStorage.getItem(TAB_CACHE_KEY));
-        if (cached && Date.now() - cached.at < TAB_CACHE_TTL_MS) return cached.tabs;
-      } catch {}
-
-      // Google has no keyless API for this, so we read the tab list out of
-      // the sheet's own viewer page (it embeds each tab's name + gid as JS).
-      const res = await fetch(`https://docs.google.com/spreadsheets/d/${id}/htmlview`);
-      if (!res.ok) throw new Error(`Could not open the sheet (HTTP ${res.status}). Make sure it's shared as "Anyone with the link".`);
-      const html = await res.text();
-
-      const tabs = [];
-      const re = /name:\s*"([^"]*)"[\s\S]{0,200}?gid:\s*"(\d+)"/g;
-      let m;
-      while ((m = re.exec(html))) tabs.push({ name: m[1], gid: m[2] });
-
-      if (!tabs.length) throw new Error('No tabs found. Make sure the sheet is shared as "Anyone with the link".');
-
-      try { localStorage.setItem(TAB_CACHE_KEY, JSON.stringify({ at: Date.now(), tabs })); } catch {}
-      return tabs;
-    }
-
-    async function runSheets() {
-      try {
-        const tabs = await listTabs(SHEET_ID);
-        app.innerHTML = '';
-        // Render each tab as soon as it lands instead of waiting on the slowest one.
-        await Promise.all(tabs.map(async t => {
-          try {
-            const { name, headers, rows } = await fetchSheetData(SHEET_ID, t);
-            renderTable(name, headers, rows);
-          } catch (err) {
-            console.error(err);
-            renderTableError(t.name, err.message);
-          }
-        }));
-      } catch (err) {
-        console.error(err);
-        showError(err.message);
-      }
-    }
-
-    async function fetchSheetData(id, { name, gid }) {
-      // GViz API — works on any "Anyone with the link" sheet, no API key needed
-      const url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json&gid=${gid}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Could not load tab "${name}" (HTTP ${res.status}). Make sure the sheet is shared as "Anyone with the link".`);
-      const text = await res.text();
-
-      // GViz wraps response in: /*O_o*/\ngoogle.visualization.Query.setResponse({...});
-      const jsonStr = text.replace(/^[\s\S]*?google\.visualization\.Query\.setResponse\(/, '').replace(/\);?\s*$/, '');
-      const table = JSON.parse(jsonStr).table;
-
-      const headers = table.cols.map(c => c.label || c.id);
-      const rows = (table.rows || []).map(r =>
-        (r.c || []).map(cell => {
-          if (!cell) return '';
-          // GViz returns formatted value (f) or raw value (v)
-          return cell.f ?? (cell.v !== null && cell.v !== undefined ? String(cell.v) : '');
-        })
-      );
-
-      return { name, headers, rows };
-    }
-
-    function renderTable(name, headers, rows) {
-      const nonEmpty = rows.filter(r => r.some(c => c !== ''));
-      const block = document.createElement('div');
-      block.className = 'sheet-block';
-
-      block.innerHTML = `
-        <div class="sheet-header">
-          <span class="sheet-title">📊 ${esc(name)}</span>
-          <span class="sheet-badge">${nonEmpty.length} row${nonEmpty.length !== 1 ? 's' : ''}</span>
-        </div>`;
-
-      if (!nonEmpty.length) {
-        block.innerHTML += `<div class="state-box"><span class="state-icon">🗂️</span><p>No data in this sheet.</p></div>`;
-        app.appendChild(block);
-        return;
-      }
-
-      const wrap = document.createElement('div');
-      wrap.className = 'table-wrap';
-      const table = document.createElement('table');
-
-      const thead = document.createElement('thead');
-      thead.innerHTML = `<tr>${headers.map(h => `<th>${esc(h)}</th>`).join('')}</tr>`;
-      table.appendChild(thead);
-
-      const tbody = document.createElement('tbody');
-      nonEmpty.forEach(row => {
-        const tr = document.createElement('tr');
-        headers.forEach((_, i) => {
-          const td = document.createElement('td');
-          td.textContent = row[i] ?? '';
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      });
-      table.appendChild(tbody);
-
-      wrap.appendChild(table);
-      block.appendChild(wrap);
-      app.appendChild(block);
-    }
-
-    function renderTableError(name, msg) {
-      const block = document.createElement('div');
-      block.className = 'sheet-block';
-      block.innerHTML = `
-        <div class="sheet-header">
-          <span class="sheet-title">📊 ${esc(name)}</span>
-        </div>
-        <div class="state-box error">
-          <span class="state-icon">❌</span>
-          <p>${esc(msg)}</p>
-        </div>`;
-      app.appendChild(block);
-    }
-
-    function showError(msg) {
-      app.innerHTML = `
-        <div class="sheet-block">
-          <div class="state-box error">
-            <span class="state-icon">❌</span>
-            <p><strong>Could not load data</strong><br><br>${esc(msg)}</p>
-          </div>
-        </div>`;
-    }
-
-    function esc(s) {
-      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-
-    runSheets();
-  </script>
-
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 
 </html>
