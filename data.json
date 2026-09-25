@@ -1,0 +1,33 @@
+{
+  "adviser": {
+    "legalName": "Madhu Srinivas V",
+    "proprietorLine": "Madhu Srinivas V (Proprietor, Jeeves Investment Advisors)",
+    "tradeName": "Jeeves Investment Advisors",
+    "registrationType": "Individual SEBI-Registered Investment Adviser (RIA)",
+    "sebiRegNo": "INA000023126",
+    "registrationValidity": "Valid from 10/08/2026 till it is suspended or cancelled in accordance with the Regulations",
+    "baslMembershipId": null,
+    "baslValidity": null,
+    "nismCertificationNumbers": null
+  },
+  "contact": {
+    "registeredOfficeAddress": "37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India",
+    "sebiRegionalOffice": "7th Floor, 756-L, Anna Salai, Chennai – 600002, Tamil Nadu",
+    "phone": "+919962284289",
+    "email": "vmadhusrinivas@gmail.com",
+    "grievanceWorkingHours": null
+  },
+  "founder": {
+    "name": "Madhu Srinivas V",
+    "initials": "MS",
+    "role": "Proprietor & Principal Officer — Jeeves Investment Advisors"
+  },
+  "site": {
+    "domain": "jeevesinvadvisors.in",
+    "copyrightYear": 2026
+  },
+  "config": {
+    "web3formsAccessKey": "8bcebccf-7d29-41eb-b965-a63ec1e67888",
+    "googleSheetId": "1zl0Bigjsfs22mPySj9F1HBiuSPlg6zwvgZclODPGSyM"
+  }
+}

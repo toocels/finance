@@ -13,7 +13,7 @@
   <meta name="keywords"
     content="SEBI Registered Investment Adviser, Fee Only Financial Planner, Wealth Management Chennai, RIA India, Investment Planning">
   <meta name="author" content="Madhu Srinivas V">
-  <meta name="theme-color" content="#12528f">
+  <meta name="theme-color" content="#0b1e36">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -42,21 +42,21 @@
     <div class="toolbar-inner">
       <div class="sebi-badge-pill">
         <span aria-hidden="true">🛡️</span>
-        <span>SEBI Reg. No.: <strong>INA000023126</strong> (Individual RIA)</span>
+        <span>SEBI Reg. No.: <strong data-field="adviser.sebiRegNo">INA000023126</strong> (Individual RIA)</span>
       </div>
 
       <div class="toolbar-controls" role="region" aria-label="Accessibility Options">
         <span style="font-size:0.75rem; margin-right: 2px;">Text Size:</span>
-        <button type="button" class="btn-toolbar" id="btn-font-sm" aria-label="Decrease text size">A-</button>
-        <button type="button" class="btn-toolbar active" id="btn-font-md" aria-label="Normal text size">A</button>
-        <button type="button" class="btn-toolbar" id="btn-font-lg" aria-label="Increase text size">A+</button>
+        <button type="button" class="btn-toolbar" id="btn-font-sm" aria-label="Decrease text size" aria-pressed="false">A-</button>
+        <button type="button" class="btn-toolbar active" id="btn-font-md" aria-label="Normal text size" aria-pressed="true">A</button>
+        <button type="button" class="btn-toolbar" id="btn-font-lg" aria-label="Increase text size" aria-pressed="false">A+</button>
 
         <span style="font-size:0.75rem; margin: 0 4px 0 8px;">Theme:</span>
         <button type="button" class="btn-toolbar" id="btn-theme-default"
-          aria-label="Standard Light Theme">Standard</button>
-        <button type="button" class="btn-toolbar" id="btn-theme-contrast" aria-label="Toggle High Contrast Mode">High
+          aria-label="Standard Light Theme" aria-pressed="true">Standard</button>
+        <button type="button" class="btn-toolbar" id="btn-theme-contrast" aria-label="Toggle High Contrast Mode" aria-pressed="false">High
           Contrast</button>
-        <button type="button" class="btn-toolbar" id="btn-theme-dark" aria-label="Toggle Dark Mode">Dark</button>
+        <button type="button" class="btn-toolbar" id="btn-theme-dark" aria-label="Toggle Dark Mode" aria-pressed="false">Dark</button>
       </div>
     </div>
   </aside>
@@ -81,13 +81,13 @@
       <!-- Main Navigation -->
       <nav class="main-nav" id="mainNav" aria-label="Primary Navigation">
         <ul class="nav-list">
-          <li><a href="#about" class="nav-link">Who We Are</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#founder" class="nav-link">Founder</a></li>
-          <li><a href="#services" class="nav-link">Advisory Process</a></li>
-          <li><a href="#approach" class="nav-link">Our Approach</a></li>
-          <li><a href="#compliance" class="nav-link">Regulatory Disclosures</a></li>
-          <li><a href="#complaints" class="nav-link">Complaints Data</a></li>
-          <li><a href="#contact" class="nav-link nav-cta">Get in Touch</a></li>
+          <li><a href="#services" class="nav-link">Process</a></li>
+          <li><a href="#approach" class="nav-link">Approach</a></li>
+          <li><a href="#compliance" class="nav-link">Disclosures</a></li>
+          <li><a href="#complaints" class="nav-link">Complaints</a></li>
+          <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -106,7 +106,7 @@
     </div>
   </div>
 
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
 
     <!-- ── Hero Section ── -->
     <section id="home" class="hero-section" aria-labelledby="hero-heading">
@@ -188,8 +188,7 @@
             <h3 class="card-title">Unbiased & Objective Advice</h3>
             <p class="card-desc">
               This eliminates conflicts of interest and ensures advice that is truly unbiased and suitable to your life
-              goals. Every recommendation is tailored strictly to your risk profile, liquidity requirements, and
-              timeline.
+              goals.
             </p>
           </div>
         </div>
@@ -209,11 +208,11 @@
 
         <div class="founder-card">
           <div class="founder-meta">
-            <div class="founder-avatar" aria-hidden="true">MS</div>
+            <div class="founder-avatar" aria-hidden="true" data-field="founder.initials">MS</div>
             <div>
-              <h3 class="founder-name">Madhu Srinivas V</h3>
-              <div class="founder-role">Proprietor & Principal Officer — Jeeves Investment Advisors</div>
-              <div class="founder-reg">SEBI Registration No. INA000023126</div>
+              <h3 class="founder-name" data-field="founder.name">Madhu Srinivas V</h3>
+              <div class="founder-role" data-field="founder.role">Proprietor & Principal Officer — Jeeves Investment Advisors</div>
+              <div class="founder-reg">SEBI Registration No. <span data-field="adviser.sebiRegNo">INA000023126</span></div>
             </div>
           </div>
 
@@ -286,48 +285,74 @@
           <span class="section-badge">Methodology</span>
           <h2 id="approach-heading" class="section-title">Our Approach</h2>
           <p class="section-subtitle">
-            A structured, 4-step collaborative journey from discovery to lifelong wealth management.
+            A structured, 7-step collaborative journey from discovery to lifelong wealth management.
           </p>
         </div>
 
         <div class="process-grid">
           <!-- Step 1 -->
           <div class="process-card">
-            <div class="process-step-num" aria-label="Step 1">1</div>
-            <h3 class="process-title">Discovery & Goal Mapping</h3>
+            <div class="process-step-num"><span class="sr-only">Step 1</span><span aria-hidden="true">1</span></div>
+            <h3 class="process-title">Discovery</h3>
             <p class="process-desc">
-              We begin by understanding your values, cash flows, family needs, and distinct timeline for short-term and
-              long-term milestones.
+              Understanding your life goals, family situation, cash flows, and existing investments to build a
+              complete financial picture.
             </p>
           </div>
 
           <!-- Step 2 -->
           <div class="process-card">
-            <div class="process-step-num" aria-label="Step 2">2</div>
-            <h3 class="process-title">Risk Profiling</h3>
+            <div class="process-step-num"><span class="sr-only">Step 2</span><span aria-hidden="true">2</span></div>
+            <h3 class="process-title">Documentation</h3>
             <p class="process-desc">
-              Evaluating your risk capacity and risk tolerance through quantitative and qualitative assessments to
-              define optimal asset allocation.
+              Collecting KYC, risk-profiling inputs, and records of your existing portfolio and financial statements.
             </p>
           </div>
 
           <!-- Step 3 -->
           <div class="process-card">
-            <div class="process-step-num" aria-label="Step 3">3</div>
-            <h3 class="process-title">Strategy Formulation</h3>
+            <div class="process-step-num"><span class="sr-only">Step 3</span><span aria-hidden="true">3</span></div>
+            <h3 class="process-title">Onboarding</h3>
             <p class="process-desc">
-              Drafting an unbiased, tailored investment roadmap with clear action points, optimized asset allocation,
-              and emergency reserves.
+              Formalising the client agreement with full fee disclosure, as required under SEBI Investment Adviser
+              Regulations.
             </p>
           </div>
 
           <!-- Step 4 -->
           <div class="process-card">
-            <div class="process-step-num" aria-label="Step 4">4</div>
-            <h3 class="process-title">Review & Rebalance</h3>
+            <div class="process-step-num"><span class="sr-only">Step 4</span><span aria-hidden="true">4</span></div>
+            <h3 class="process-title">Planning</h3>
             <p class="process-desc">
-              Continuous monitoring and periodic reviews to adapt your portfolio to life transitions and significant
-              market shifts.
+              Translating your goals and risk profile into a structured, actionable financial plan.
+            </p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="process-card">
+            <div class="process-step-num"><span class="sr-only">Step 5</span><span aria-hidden="true">5</span></div>
+            <h3 class="process-title">Plan Approval</h3>
+            <p class="process-desc">
+              Reviewing the proposed plan together, addressing questions, and securing your sign-off before
+              execution.
+            </p>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="process-card">
+            <div class="process-step-num"><span class="sr-only">Step 6</span><span aria-hidden="true">6</span></div>
+            <h3 class="process-title">Implementation</h3>
+            <p class="process-desc">
+              Executing the agreed plan across the recommended investment avenues.
+            </p>
+          </div>
+
+          <!-- Step 7 -->
+          <div class="process-card">
+            <div class="process-step-num"><span class="sr-only">Step 7</span><span aria-hidden="true">7</span></div>
+            <h3 class="process-title">Ongoing Tracking</h3>
+            <p class="process-desc">
+              Periodic review and rebalancing to keep your portfolio aligned with your goals over time.
             </p>
           </div>
         </div>
@@ -353,32 +378,35 @@
             <ul class="disclosure-list">
               <li>
                 <span class="disclosure-label">Name of Investment Adviser</span>
-                <span class="disclosure-value">Madhu Srinivas V (Proprietor, Jeeves Investment Advisors)</span>
+                <span class="disclosure-value" data-field="adviser.proprietorLine">Madhu Srinivas V (Proprietor, Jeeves Investment Advisors)</span>
               </li>
               <li>
                 <span class="disclosure-label">Type of Registration</span>
-                <span class="disclosure-value">Individual SEBI-Registered Investment Adviser (RIA)</span>
+                <span class="disclosure-value" data-field="adviser.registrationType">Individual SEBI-Registered Investment Adviser (RIA)</span>
               </li>
               <li>
                 <span class="disclosure-label">SEBI Registration Number</span>
-                <span class="disclosure-value"><strong>INA000023126</strong></span>
+                <span class="disclosure-value"><strong data-field="adviser.sebiRegNo">INA000023126</strong></span>
               </li>
               <li>
                 <span class="disclosure-label">Validity of Registration</span>
-                <span class="disclosure-value">Valid from 10/08/2026 till it is suspended or cancelled in accordance
+                <span class="disclosure-value" data-field="adviser.registrationValidity">Valid from 10/08/2026 till it is suspended or cancelled in accordance
                   with the Regulations</span>
               </li>
               <li>
                 <span class="disclosure-label">Registered Office Address</span>
-                <span class="disclosure-value">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu</span>
+                <span class="disclosure-value" data-field="contact.registeredOfficeAddress">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India</span>
               </li>
               <li>
                 <span class="disclosure-label">Contact Details / Mobile</span>
-                <span class="disclosure-value">+91 9962284289 | vmadhusrinivas@gmail.com</span>
+                <span class="disclosure-value">
+                  <span data-field="contact.phoneDisplay">+91 99622 84289</span> |
+                  <a href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>
+                </span>
               </li>
               <li>
                 <span class="disclosure-label">SEBI Regional Office</span>
-                <span class="disclosure-value">7th Floor, 756-L, Anna Salai, Chennai – 600002, Tamil Nadu</span>
+                <span class="disclosure-value" data-field="contact.sebiRegionalOffice">7th Floor, 756-L, Anna Salai, Chennai – 600002, Tamil Nadu</span>
               </li>
             </ul>
           </div>
@@ -393,10 +421,11 @@
             <ul class="disclosure-list">
               <li>
                 <span class="disclosure-label">Tier 1: Principal & Grievance Officer</span>
+                <span class="disclosure-value" data-field="founder.name">Madhu Srinivas V</span>
+                <span class="disclosure-value" data-field="contact.registeredOfficeAddress">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India</span>
                 <span class="disclosure-value">
-                  Madhu Srinivas V<br>
-                  37/1 Rajabather Street, T Nagar, Chennai – 600017<br>
-                  Email: <a href="mailto:vmadhusrinivas@gmail.com">vmadhusrinivas@gmail.com</a> | Phone: +91 9962284289
+                  Email: <a href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a><br>
+                  Phone: <a href="tel:+919962284289" data-field-href="contact.phoneTelHref" data-field="contact.phoneDisplay">+91 99622 84289</a>
                 </span>
               </li>
               <li>
@@ -417,6 +446,9 @@
                 </span>
               </li>
             </ul>
+            <p class="disclosure-value" style="font-size:0.875rem; margin-top: 1rem;">
+              <a href="grievance/">View Full Grievance Escalation Matrix <span aria-hidden="true">→</span></a>
+            </p>
           </div>
 
         </div>
@@ -425,7 +457,11 @@
         <div class="card" style="margin-top: 2rem;">
           <h3 class="card-title">Investor Charter for Investment Advisers (Annexure F)</h3>
           <p class="card-desc" style="margin-bottom: 1rem;">
-            As prescribed by SEBI circulars, investors are entitled to:
+            As prescribed by the <a
+              href="https://www.sebi.gov.in/legal/master-circulars/feb-2026/master-circular-for-investment-advisers_99569.html"
+              target="_blank" rel="noopener noreferrer">SEBI Master Circular for Investment Advisers <span
+                aria-hidden="true">↗</span><span class="sr-only"> (opens in new tab)</span></a>, investors are
+            entitled to:
           </p>
           <div class="grid-2">
             <div>
@@ -461,7 +497,10 @@
           <span class="section-badge">Public Accountability</span>
           <h2 id="complaints-heading" class="section-title">Complaints Data</h2>
           <p class="section-subtitle">
-            Monthly complaint status updated in accordance with SEBI Master Circular (Annexure C).
+            Monthly complaint status updated in accordance with the <a
+              href="https://www.sebi.gov.in/legal/master-circulars/feb-2026/master-circular-for-investment-advisers_99569.html"
+              target="_blank" rel="noopener noreferrer">SEBI Master Circular for Investment Advisers <span
+                aria-hidden="true">↗</span><span class="sr-only"> (opens in new tab)</span></a> (Annexure C).
           </p>
         </div>
 
@@ -497,7 +536,7 @@
 
             <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
               <!-- Web3Forms Hidden Tokens -->
-              <input type="hidden" name="access_key" value="8bcebccf-7d29-41eb-b965-a63ec1e67888">
+              <input type="hidden" name="access_key" value="8bcebccf-7d29-41eb-b965-a63ec1e67888" data-field-value="config.web3formsAccessKey">
               <input type="hidden" name="subject" value="New Advisory Enquiry — Jeeves Investment Advisors">
               <input type="hidden" name="from_name" value="Jeeves Investment Advisors Website">
               <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true">
@@ -558,7 +597,7 @@
               </div>
               <div class="alert error" id="errorMsg" role="alert" tabindex="-1">
                 ❌ Something went wrong. Please try again or email us directly at <a
-                  href="mailto:vmadhusrinivas@gmail.com">vmadhusrinivas@gmail.com</a>.
+                  href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>.
               </div>
             </form>
           </div>
@@ -569,7 +608,7 @@
               <div class="info-icon blue" aria-hidden="true">📞</div>
               <div>
                 <div class="info-label">Call / Mobile</div>
-                <a href="tel:+919962284289" class="info-value">+91 99622 84289</a>
+                <a href="tel:+919962284289" class="info-value" data-field-href="contact.phoneTelHref" data-field="contact.phoneDisplay">+91 99622 84289</a>
               </div>
             </div>
 
@@ -577,34 +616,26 @@
               <div class="info-icon green" aria-hidden="true">✉️</div>
               <div>
                 <div class="info-label">Email Us</div>
-                <a href="mailto:vmadhusrinivas@gmail.com" class="info-value">vmadhusrinivas@gmail.com</a>
+                <a href="mailto:vmadhusrinivas@gmail.com" class="info-value" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>
               </div>
             </div>
 
             <div class="info-card">
-              <div class="info-icon gold" aria-hidden="true">📍</div>
+              <div class="info-icon azure" aria-hidden="true">📍</div>
               <div>
                 <div class="info-label">Office Address</div>
-                <div class="info-value" style="font-weight:400; font-size:0.875rem; line-height:1.5;">
-                  37/1 Rajabather Street, T Nagar<br>
-                  Chennai – 600017, Tamil Nadu, India
+                <div class="info-value" style="font-weight:400; font-size:0.875rem; line-height:1.5;"
+                  data-field="contact.registeredOfficeAddress">
+                  37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India
                 </div>
               </div>
-            </div>
-
-            <div class="calendly-card">
-              <h3>Prefer Direct Scheduling?</h3>
-              <p>Schedule an introductory discovery call at your convenience.</p>
-              <a href="mailto:vmadhusrinivas@gmail.com?subject=Discovery%20Call%20Request" class="calendly-btn">
-                <span aria-hidden="true">📅</span> Request an Appointment
-              </a>
             </div>
 
             <div class="card" style="margin-top: 1.25rem; text-align: center; padding: 1.25rem;">
               <div style="font-size:0.8125rem; color:var(--text-muted);">
                 🛡️ <strong>SEBI Registered Investment Adviser</strong><br>
-                Reg. No.: <strong>INA000023126</strong><br>
-                Proprietor: <strong>Madhu Srinivas V</strong>
+                Reg. No.: <strong data-field="adviser.sebiRegNo">INA000023126</strong><br>
+                Proprietor: <strong data-field="founder.name">Madhu Srinivas V</strong>
               </div>
             </div>
           </div>
@@ -623,24 +654,24 @@
         <strong>Accessibility &amp; Standards Statement:</strong> This website is built targeting <strong>WCAG 2.2 Level
           AA</strong>, <strong>GIGW 3.0 (Guidelines for Indian Government Websites)</strong>, and <strong>BIS IS
           17802:2021</strong> accessibility standards. For accessibility assistance or feedback, please contact <a
-          href="mailto:vmadhusrinivas@gmail.com">vmadhusrinivas@gmail.com</a>.
+          href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>.
       </div>
 
       <div class="footer-grid">
         <div class="footer-col">
-          <h4>Jeeves Investment Advisors</h4>
+          <h3>Jeeves Investment Advisors</h3>
           <p style="font-size:0.875rem; line-height:1.6; margin-bottom:1rem;">
             SEBI-registered fee-only investment advisory. Purely client-compensated advice eliminating conflicts of
             interest.
           </p>
-          <p style="font-size:0.8125rem; color:var(--text-light);">
-            Principal Officer: Madhu Srinivas V<br>
-            37/1 Rajabather Street, T Nagar, Chennai – 600017
+          <p style="font-size:0.8125rem;">
+            Principal Officer: <span data-field="founder.name">Madhu Srinivas V</span><br>
+            <span data-field="contact.registeredOfficeAddress">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India</span>
           </p>
         </div>
 
         <div class="footer-col">
-          <h4>Quick Links</h4>
+          <h3>Quick Links</h3>
           <ul class="footer-links">
             <li><a href="#about">Who We Are</a></li>
             <li><a href="#founder">About Founder</a></li>
@@ -648,19 +679,20 @@
             <li><a href="#approach">Our Approach</a></li>
             <li><a href="#compliance">SEBI Disclosures</a></li>
             <li><a href="#complaints">Complaints Data</a></li>
+            <li><a href="grievance/">Grievance Escalation Matrix</a></li>
             <li><a href="#contact">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Regulatory Portals</h4>
+          <h3>Regulatory Portals</h3>
           <ul class="footer-links">
-            <li><a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI Official Portal ↗</a>
+            <li><a href="https://www.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI Official Portal <span aria-hidden="true">↗</span><span class="sr-only"> (opens in new tab)</span></a>
             </li>
-            <li><a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI SCORES 2.0 ↗</a>
+            <li><a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer">SEBI SCORES 2.0 <span aria-hidden="true">↗</span><span class="sr-only"> (opens in new tab)</span></a>
             </li>
-            <li><a href="https://smartodr.in/" target="_blank" rel="noopener noreferrer">SMART ODR Portal ↗</a></li>
-            <li><a href="https://www.nism.ac.in/" target="_blank" rel="noopener noreferrer">NISM Certifications ↗</a>
+            <li><a href="https://smartodr.in/" target="_blank" rel="noopener noreferrer">SMART ODR Portal <span aria-hidden="true">↗</span><span class="sr-only"> (opens in new tab)</span></a></li>
+            <li><a href="https://www.nism.ac.in/" target="_blank" rel="noopener noreferrer">NISM Certifications <span aria-hidden="true">↗</span><span class="sr-only"> (opens in new tab)</span></a>
             </li>
           </ul>
         </div>
@@ -668,10 +700,10 @@
 
       <div class="footer-bottom">
         <div>
-          &copy; 2026 Jeeves Investment Advisors. All Rights Reserved. | SEBI Reg. No.: INA000023126
+          &copy; <span data-field="site.copyrightYear">2026</span> Jeeves Investment Advisors. All Rights Reserved. | SEBI Reg. No.: <span data-field="adviser.sebiRegNo">INA000023126</span>
         </div>
         <div>
-          URL: <strong>jeevesinvadvisors.in</strong>
+          URL: <strong data-field="site.domain">jeevesinvadvisors.in</strong>
         </div>
       </div>
 

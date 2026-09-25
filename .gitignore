@@ -1,5 +1,5 @@
 /docs
-/*.log
+*.log
 tmp
-.env
 CLAUDE.md
+TODO.md
