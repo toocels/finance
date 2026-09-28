@@ -1579,7 +1579,19 @@ select {
 }
 
 .info-value:hover {
-  color: var(--primary);
+  color: var(--secondary);
+}
+
+.address-link {
+  text-decoration: underline;
+  text-decoration-color: var(--border-color);
+  text-underline-offset: 3px;
+  transition: color var(--transition-speed), text-decoration-color var(--transition-speed);
+}
+
+.address-link:hover {
+  color: var(--secondary);
+  text-decoration-color: var(--secondary);
 }
 
 [data-theme="high-contrast"] .info-value {
@@ -1621,7 +1633,7 @@ select {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
   gap: 2.5rem;
   margin-bottom: 2.5rem;
 }
@@ -1747,6 +1759,10 @@ select {
 
   .grid-3,
   .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }

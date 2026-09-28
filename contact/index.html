@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary Meta Tags -->
-  <title>Grievance Escalation Matrix | Jeeves Investment Advisors</title>
-  <meta name="title" content="Grievance Escalation Matrix | Jeeves Investment Advisors">
+  <title>Contact Us | Jeeves Investment Advisors</title>
+  <meta name="title" content="Contact Us | Jeeves Investment Advisors">
   <meta name="description"
-    content="Grievance escalation matrix for Jeeves Investment Advisors, a SEBI-registered Investment Adviser. Reg No. INA000023126.">
+    content="Get in touch with Jeeves Investment Advisors, a SEBI-registered fee-only Investment Adviser. Reg No. INA000023126.">
   <meta name="author" content="Madhu Srinivas V">
   <meta name="theme-color" content="#0b1e36">
 
@@ -99,75 +99,136 @@
 
   <main id="main-content" tabindex="-1">
 
-    <section class="section" aria-labelledby="grievance-heading">
+    <section class="section" aria-labelledby="contact-heading">
       <div class="section-container">
         <div class="section-header">
-          <span class="section-badge">Grievance Redressal</span>
-          <h1 id="grievance-heading" class="section-title">Grievance Escalation Matrix</h1>
+          <span class="section-badge">Connect</span>
+          <h1 id="contact-heading" class="section-title">Get in Touch</h1>
           <p class="section-subtitle">
-            Prescribed escalation matrix for clients raising grievances with this Investment Adviser.
+            Have questions regarding financial planning or fee-only advisory? Reach out to us.
           </p>
         </div>
 
-        <div class="sheet-block">
-          <div class="sheet-header">
-            <h2 class="sheet-title">📋 Grievance Escalation Matrix</h2>
-          </div>
-          <div class="table-wrap" tabindex="0" role="region" aria-label="Grievance escalation matrix">
-            <table class="compliance-table">
-              <caption class="sr-only">Grievance escalation matrix — designation, contact person, address, contact number, email, and working hours</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Designation</th>
-                  <th scope="col">Contact Person</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">Contact No.</th>
-                  <th scope="col">Email ID</th>
-                  <th scope="col">Working Hours</th>
-                  <th scope="col">Resolution Timeline</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Principal Officer / Compliance Officer</th>
-                  <td data-field="founder.name">Madhu Srinivas V</td>
-                  <td data-field="contact.registeredOfficeAddress">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India</td>
-                  <td><a href="tel:+919962284289" data-field-href="contact.phoneTelHref" data-field="contact.phoneDisplay">+91 99622 84289</a></td>
-                  <td><a href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a></td>
-                  <td data-field="contact.grievanceWorkingHours">Monday to Friday, 10:00 AM – 6:00 PM IST (excluding public holidays)</td>
-                  <td data-field="contact.resolutionTimelineDays">Within 21 calendar days (SCORES 2.0 standard)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <div class="contact-layout">
 
-        <div class="card" style="margin-top: 2rem;">
-          <h3 class="card-title">Escalating Beyond the Adviser</h3>
-          <p class="card-desc" style="margin-bottom: 1rem;">
-            If a grievance is not redressed within the specified regulatory timelines, it may be escalated to the
-            official regulatory portals below:
-          </p>
-          <ul class="disclosure-list">
-            <li>
-              <span class="disclosure-label">SEBI SCORES 2.0 Portal</span>
-              <span class="disclosure-value">
-                <a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer">https://scores.sebi.gov.in/
-                  (opens in new tab)</a>
-              </span>
-            </li>
-            <li>
-              <span class="disclosure-label">SMART ODR Portal</span>
-              <span class="disclosure-value">
-                <a href="https://smartodr.in/" target="_blank" rel="noopener noreferrer">https://smartodr.in/ (opens in
-                  new tab)</a>
-              </span>
-            </li>
-          </ul>
+          <!-- Contact Form (Web3Forms) -->
+          <div class="form-card">
+            <h2>Send Us a Message</h2>
+            <p class="subtitle">We typically respond within 1–2 business days.</p>
+
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <!-- Web3Forms Hidden Tokens -->
+              <input type="hidden" name="access_key" value="8bcebccf-7d29-41eb-b965-a63ec1e67888" data-field-value="config.web3formsAccessKey">
+              <input type="hidden" name="subject" value="New Advisory Enquiry — Jeeves Investment Advisors">
+              <input type="hidden" name="from_name" value="Jeeves Investment Advisors Website">
+              <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name"
+                    aria-required="true">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email"
+                    aria-required="true">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+91 98xxx xxxxx" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                  <label for="topic">Topic of Discussion</label>
+                  <select id="topic" name="topic">
+                    <option value="">Select a topic</option>
+                    <option value="Comprehensive Financial Planning">Comprehensive Financial Planning</option>
+                    <option value="Investment Advisory & Portfolio Review">Investment Advisory &amp; Portfolio Review
+                    </option>
+                    <option value="Retirement Savings Strategy">Retirement Savings Strategy</option>
+                    <option value="Second Opinion on Investments">Second Opinion on Investments</option>
+                    <option value="General Enquiry">General Enquiry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Your Message <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="message" name="message"
+                  placeholder="Tell us about your goals and how we can assist you..." required
+                  aria-required="true"></textarea>
+              </div>
+
+              <div class="dpdp-consent">
+                <p>
+                  🔒 <strong>Privacy &amp; Data Protection:</strong> By submitting this form, you consent to your
+                  contact information being processed as per our <a href="../privacy-policy/">Privacy Policy</a>.
+                </p>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submitBtn">
+                <span aria-hidden="true">✉️</span> Send Message
+              </button>
+
+              <div class="alert success" id="successMsg" role="alert" tabindex="-1">
+                ✅ Message sent successfully! We will get back to you within 1–2 business days.
+              </div>
+              <div class="alert error" id="errorMsg" role="alert" tabindex="-1">
+                ❌ Something went wrong. Please try again or email us directly at <a
+                  href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>.
+              </div>
+            </form>
+          </div>
+
+          <!-- Sidebar Information Cards -->
+          <div>
+            <div class="info-card">
+              <div class="info-icon blue" aria-hidden="true">📞</div>
+              <div>
+                <div class="info-label">Call / Mobile</div>
+                <a href="tel:+919962284289" class="info-value" data-field-href="contact.phoneTelHref" data-field="contact.phoneDisplay">+91 99622 84289</a>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon green" aria-hidden="true">✉️</div>
+              <div>
+                <div class="info-label">Email Us</div>
+                <a href="mailto:vmadhusrinivas@gmail.com" class="info-value" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon azure" aria-hidden="true">📍</div>
+              <div>
+                <div class="info-label">Office Address</div>
+                <a href="https://www.google.com/maps/search/?api=1&query=37%2F1%20Rajabather%20Street%2C%20T%20Nagar%2C%20Chennai%20%E2%80%93%20600017%2C%20Tamil%20Nadu%2C%20India"
+                  target="_blank" rel="noopener noreferrer" class="info-value address-link"
+                  style="font-weight:400; font-size:0.875rem; line-height:1.5; display:inline-block;"
+                  data-field-href="contact.mapsHref"
+                  data-field="contact.registeredOfficeAddress"
+                  title="View office location on Google Maps (opens in new tab)">
+                  37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India
+                </a>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.25rem; text-align: center; padding: 1.25rem;">
+              <div style="font-size:0.8125rem; color:var(--text-muted);">
+                🛡️ <strong>SEBI Registered Investment Adviser</strong><br>
+                Reg. No.: <strong data-field="adviser.sebiRegNo">INA000023126</strong><br>
+                Proprietor: <strong data-field="founder.name">Madhu Srinivas V</strong>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <p class="card-desc" style="margin-top: 2rem;">
-          <a href="../index.html#compliance">&larr; Back to Regulatory Disclosures</a>
+          <a href="../index.html#contact">&larr; Back to Homepage</a>
         </p>
       </div>
     </section>

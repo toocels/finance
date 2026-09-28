@@ -86,8 +86,8 @@
           <li><a href="#services" class="nav-link">Process</a></li>
           <li><a href="#approach" class="nav-link">Approach</a></li>
           <li><a href="#compliance" class="nav-link">Disclosures</a></li>
-          <li><a href="#complaints" class="nav-link">Complaints</a></li>
-          <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+          <li><a href="complaints/" class="nav-link">Complaints</a></li>
+          <li><a href="contact/" class="nav-link nav-cta">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -394,6 +394,14 @@
                   with the Regulations</span>
               </li>
               <li>
+                <span class="disclosure-label">BASL / BSE Membership Details</span>
+                <span class="disclosure-value" data-field="adviser.baslMembershipId">BASL / BSE Enlistment No. 2350 (Sample / Subject to confirmation)</span>
+              </li>
+              <li>
+                <span class="disclosure-label">NISM Qualifications / Certifications</span>
+                <span class="disclosure-value" data-field="adviser.nismCertificationNumbers">NISM-Series-X-A & X-B (Investment Adviser Certification)</span>
+              </li>
+              <li>
                 <span class="disclosure-label">Registered Office Address</span>
                 <span class="disclosure-value" data-field="contact.registeredOfficeAddress">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India</span>
               </li>
@@ -425,7 +433,9 @@
                 <span class="disclosure-value" data-field="contact.registeredOfficeAddress">37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India</span>
                 <span class="disclosure-value">
                   Email: <a href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a><br>
-                  Phone: <a href="tel:+919962284289" data-field-href="contact.phoneTelHref" data-field="contact.phoneDisplay">+91 99622 84289</a>
+                  Phone: <a href="tel:+919962284289" data-field-href="contact.phoneTelHref" data-field="contact.phoneDisplay">+91 99622 84289</a><br>
+                  Working Hours: <span data-field="contact.grievanceWorkingHours">Monday to Friday, 10:00 AM – 6:00 PM IST (excluding public holidays)</span><br>
+                  Resolution Window: <strong data-field="contact.resolutionTimelineDays">Within 21 calendar days (SCORES 2.0 standard)</strong>
                 </span>
               </li>
               <li>
@@ -485,6 +495,9 @@
               </ul>
             </div>
           </div>
+          <p class="card-desc" style="margin-top: 1.25rem;">
+            <a href="investor-charter/">Read the Full Investor Charter <span aria-hidden="true">→</span></a>
+          </p>
         </div>
 
       </div>
@@ -504,8 +517,8 @@
           </p>
         </div>
 
-        <!-- Dynamic Tables Container -->
-        <div id="complaints-app" aria-live="polite">
+        <!-- Dynamic Tables Container (homepage shows only the current month) -->
+        <div id="complaints-app" data-scope="snapshot" aria-live="polite">
           <div class="sheet-block">
             <div class="state-box">
               <div class="spinner" aria-hidden="true"></div>
@@ -513,6 +526,9 @@
             </div>
           </div>
         </div>
+        <p class="card-desc" style="margin-top: 1.25rem;">
+          <a href="complaints/">View Full Complaints History, Monthly &amp; Annual Trend, and Compliance Audit Log <span aria-hidden="true">→</span></a>
+        </p>
       </div>
     </section>
 
@@ -524,6 +540,9 @@
           <h2 id="contact-heading" class="section-title">Get in Touch</h2>
           <p class="section-subtitle">
             Have questions regarding financial planning or fee-only advisory? Reach out to us.
+          </p>
+          <p class="card-desc">
+            <a href="contact/">Open Contact as a Standalone Page <span aria-hidden="true">→</span></a>
           </p>
         </div>
 
@@ -582,9 +601,8 @@
 
               <div class="dpdp-consent">
                 <p>
-                  🔒 <strong>Privacy &amp; Data Protection:</strong> By submitting this form, you agree that your
-                  contact information will be used solely for responding to your enquiry in accordance with our data
-                  protection practices.
+                  🔒 <strong>Privacy &amp; Data Protection:</strong> By submitting this form, you consent to your
+                  contact information being processed as per our <a href="privacy-policy/">Privacy Policy</a>.
                 </p>
               </div>
 
@@ -624,10 +642,14 @@
               <div class="info-icon azure" aria-hidden="true">📍</div>
               <div>
                 <div class="info-label">Office Address</div>
-                <div class="info-value" style="font-weight:400; font-size:0.875rem; line-height:1.5;"
-                  data-field="contact.registeredOfficeAddress">
+                <a href="https://www.google.com/maps/search/?api=1&query=37%2F1%20Rajabather%20Street%2C%20T%20Nagar%2C%20Chennai%20%E2%80%93%20600017%2C%20Tamil%20Nadu%2C%20India"
+                  target="_blank" rel="noopener noreferrer" class="info-value address-link"
+                  style="font-weight:400; font-size:0.875rem; line-height:1.5; display:inline-block;"
+                  data-field-href="contact.mapsHref"
+                  data-field="contact.registeredOfficeAddress"
+                  title="View office location on Google Maps (opens in new tab)">
                   37/1 Rajabather Street, T Nagar, Chennai – 600017, Tamil Nadu, India
-                </div>
+                </a>
               </div>
             </div>
 
@@ -678,9 +700,23 @@
             <li><a href="#services">The Advisory Process</a></li>
             <li><a href="#approach">Our Approach</a></li>
             <li><a href="#compliance">SEBI Disclosures</a></li>
-            <li><a href="#complaints">Complaints Data</a></li>
+            <li><a href="investor-charter/">Investor Charter (Full)</a></li>
+            <li><a href="complaints/">Complaints Data (Full History)</a></li>
             <li><a href="grievance/">Grievance Escalation Matrix</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="contact/">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Policies &amp; Help</h3>
+          <ul class="footer-links">
+            <li><a href="privacy-policy/">Privacy Policy</a></li>
+            <li><a href="terms-of-use/">Terms of Use</a></li>
+            <li><a href="hyperlinking-policy/">Hyperlinking Policy</a></li>
+            <li><a href="copyright-policy/">Copyright Policy</a></li>
+            <li><a href="sitemap/">Sitemap</a></li>
+            <li><a href="faq/">FAQ / Help</a></li>
+            <li><a href="feedback/">Website Feedback</a></li>
           </ul>
         </div>
 

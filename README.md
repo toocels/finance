@@ -21,6 +21,26 @@ This project implements the SEBI-mandated disclosure and website requirements id
 
 ---
 
+## Site Structure
+
+The site is a homepage (`index.html`) plus a set of standalone pages (folder + `index.html`, clean URLs, GitHub-Pages-friendly), each sharing the same header/toolbar/footer and pulling from the same `data.json` / `script.js`:
+
+| Page                    | URL                     | Relationship to the homepage                                                                 |
+| :---------------------- | :---------------------- | :--------------------------------------------------------------------------------------------- |
+| Contact                 | `/contact/`              | Full duplicate of the homepage's `#contact` section — both are kept in full, by request.        |
+| Complaints Data         | `/complaints/`           | Full version (snapshot + monthly/annual trend + audit log). Homepage `#complaints` shows only the current-month snapshot, linking here for the rest. |
+| Investor Charter        | `/investor-charter/`     | Full version. Homepage `#compliance` keeps the condensed Rights/Responsibilities card, linking here. |
+| Grievance Escalation Matrix | `/grievance/`        | Full escalation table; homepage `#compliance` keeps a Tier 1–3 summary, linking here.            |
+| Privacy Policy (incl. Cookie Disclosure) | `/privacy-policy/` | GIGW 3.0 mandatory policy page.                                                        |
+| Terms of Use            | `/terms-of-use/`         | GIGW 3.0 mandatory policy page.                                                                  |
+| Hyperlinking Policy     | `/hyperlinking-policy/`  | GIGW 3.0 mandatory policy page.                                                                  |
+| Copyright Policy        | `/copyright-policy/`     | GIGW 3.0 mandatory policy page.                                                                  |
+| Sitemap (human-readable)| `/sitemap/`              | Distinct from the machine-readable `/sitemap.xml` at the root.                                   |
+| FAQ / Help              | `/faq/`                  | GIGW 3.0 mandatory policy page.                                                                  |
+| Website Feedback        | `/feedback/`             | General UX/content feedback — distinct from the Grievance Escalation Matrix.                     |
+
+---
+
 ## Features & Implementation Checklist
 
 ### 1. Security & Static Architecture
@@ -53,6 +73,18 @@ This project implements the SEBI-mandated disclosure and website requirements id
   - [ ] Semantic form with explicit `<label for="...">` associations.
   - [ ] Web3Forms integration sending submissions directly to adviser email.
   - [ ] Accessible error states and submission feedback announced via `aria-live`.
+
+### 3.5. GIGW 3.0 Mandatory Policy Pages
+
+- [x] **Privacy Policy** (`/privacy-policy/`) — includes Cookie Disclosure (folded in per this document's own guidance below).
+- [x] **Terms of Use / Website Disclaimer** (`/terms-of-use/`).
+- [x] **Hyperlinking Policy** (`/hyperlinking-policy/`).
+- [x] **Copyright Policy** (`/copyright-policy/`).
+- [x] **Sitemap page** (`/sitemap/`, human-readable — distinct from `/sitemap.xml`).
+- [x] **FAQ / Help** (`/faq/`).
+- [x] **Website Feedback mechanism** (`/feedback/`, distinct from grievance redressal).
+
+Content on these pages is reasonable-default boilerplate (DPDP-style privacy language, standard disclaimers) — have the client/compliance professional review before launch, same bar as any other statutory text on this site.
 
 ### 4. SEO & Analytics
 
@@ -87,6 +119,7 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 - Must be the **current SEBI-prescribed Investor Charter for Investment Advisers**, as circulated by SEBI — reproduced as prescribed, not a custom paraphrased summary written for this site.
 - Displayed prominently (own page or a clearly linked, easy-to-find section) — SEBI requires prominent display, not just presence somewhere on the site.
+- Built as a dedicated page, `/investor-charter/`, linked from the homepage's condensed Rights/Responsibilities card. **Pre-launch gate:** the dedicated page currently holds the same condensed summary as the homepage card, not the verbatim Annexure F text — replace its body with the prescribed text before launch.
 
 ### 4. Grievance Redressal & Escalation Matrix
 
@@ -100,6 +133,7 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 - Dynamic table rendered from Google Sheets (categorized by source: SEBI SCORES, Direct, Others; and status: Received, Resolved, Pending).
 - Satisfies mandatory SEBI compliance to publish monthly complaint data by the 7th of every month.
+- Homepage `#complaints` section shows the current-month snapshot only; the full monthly/annual trend and compliance audit log live on the dedicated `/complaints/` page, linked from the homepage.
 - **Public data must be aggregate counts only** — numbers per category/status. No client names, phone numbers, emails, complaint descriptions, or KYC/identifying information in the published sheet or tab.
 
 ### 6. Advisory & Profile Content
