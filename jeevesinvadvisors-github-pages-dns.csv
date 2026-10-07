@@ -1,0 +1,6 @@
+Domain,Record,Record Type,Forward Type,Stealth-forward Title,Email-forward alias,TTL,mx-distance,Details
+jeevesinvadvisors.in,@,A,,,,600,,185.199.108.153
+jeevesinvadvisors.in,@,A,,,,600,,185.199.109.153
+jeevesinvadvisors.in,@,A,,,,600,,185.199.110.153
+jeevesinvadvisors.in,@,A,,,,600,,185.199.111.153
+jeevesinvadvisors.in,www,CNAME,,,,600,,toocels.github.io

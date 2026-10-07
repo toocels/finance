@@ -913,6 +913,7 @@ main:focus {
   font-weight: 700;
   box-shadow: var(--shadow-sm);
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 [data-theme="high-contrast"] .founder-avatar {

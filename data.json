@@ -36,7 +36,7 @@
     "investorCharter": {
       "badge": "SEBI Disclosures",
       "title": "Investor Charter for Investment Advisers",
-      "subtitle": "Reproduced verbatim from Annexure F of the SEBI Master Circular for Investment Advisers (HO/38/12/11(2)/2026-MIRSD-POD/I/4300/2026, dated February 06, 2026).",
+      "subtitle": "The rights, responsibilities, and service standards SEBI requires every registered Investment Adviser to disclose to clients.",
       "showLastUpdated": true,
       "sections": [
         {
@@ -167,7 +167,7 @@
         {
           "heading": "Source Document",
           "paragraphs": [
-            "This charter is reproduced from Annexure F of SEBI's Master Circular for Investment Advisers, addressed to All Investment Advisers and the Investment Adviser Administration and Supervisory Body (IAASB)."
+            "This charter reflects the Investor Charter for Investment Advisers prescribed by SEBI's Master Circular for Investment Advisers, addressed to all Investment Advisers and the Investment Adviser Administration and Supervisory Body (IAASB)."
           ],
           "links": [
             { "text": "SEBI Master Circular for Investment Advisers (source)", "href": "https://www.sebi.gov.in/legal/master-circulars/feb-2026/master-circular-for-investment-advisers_99569.html", "external": true },
