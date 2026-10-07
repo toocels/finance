@@ -10,13 +10,13 @@ This project implements the SEBI-mandated disclosure and website requirements id
 
 ## Stack & Architecture
 
-| Layer            | Choice                            | Why                                                                            |
-| :--------------- | :-------------------------------- | :----------------------------------------------------------------------------- |
-| **Frontend**     | HTML5 / JavaScript / Tailwind CSS | Single-file architecture (`index.html`), utility-first styling, <1s load time. |
-| **Hosting**      | GitHub Pages                      | Free static hosting, deploys automatically on `git push`.                      |
-| **Domain & DNS** | Cloudflare Registrar + CDN        | At-cost domain pricing (~₹800/yr), free edge SSL, DDoS protection.             |
-| **Contact Form** | Web3Forms                         | Client-side AJAX submission to email without a backend server (250 free/mo).   |
-| **Data Tables**  | Public Google Sheet (GViz API)    | Live dynamic tables, no database or backend required.                          |
+| Layer            | Choice                            | Why                                                                                                                                                   |
+| :--------------- | :-------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend**     | HTML5 / JavaScript / Tailwind CSS | Single-file architecture (`index.html`), utility-first styling, <1s load time.                                                                        |
+| **Hosting**      | GitHub Pages                      | Free static hosting, deploys automatically on `git push`.                                                                                             |
+| **Domain & DNS** | Cloudflare Registrar + CDN        | At-cost domain pricing (~₹800/yr), free edge SSL, DDoS protection.                                                                                    |
+| **Contact Form** | Web3Forms                         | Client-side AJAX submission to email without a backend server (250 free/mo).                                                                          |
+| **Data Tables**  | Public Google Sheet (GViz API)    | Live dynamic tables, no database or backend required.                                                                                                 |
 | **Site Data**    | `data.json` (root)                | Name/phone/address/reg-numbers etc., fetched client-side at load and populated into elements tagged `data-field="..."` — one edit updates every page. |
 
 ---
@@ -25,19 +25,19 @@ This project implements the SEBI-mandated disclosure and website requirements id
 
 The site is a homepage (`index.html`) plus a set of standalone pages (folder + `index.html`, clean URLs, GitHub-Pages-friendly), each sharing the same header/toolbar/footer and pulling from the same `data.json` / `script.js`:
 
-| Page                    | URL                     | Relationship to the homepage                                                                 |
-| :---------------------- | :---------------------- | :--------------------------------------------------------------------------------------------- |
-| Contact                 | `/contact/`              | Full duplicate of the homepage's `#contact` section — both are kept in full, by request.        |
-| Complaints Data         | `/complaints/`           | Full version (snapshot + monthly/annual trend + audit log). Homepage `#complaints` shows only the current-month snapshot, linking here for the rest. |
-| Investor Charter        | `/investor-charter/`     | Full version. Homepage `#compliance` keeps the condensed Rights/Responsibilities card, linking here. |
-| Grievance Escalation Matrix | `/grievance/`        | Full escalation table; homepage `#compliance` keeps a Tier 1–3 summary, linking here.            |
-| Privacy Policy (incl. Cookie Disclosure) | `/privacy-policy/` | GIGW 3.0 mandatory policy page.                                                        |
-| Terms of Use            | `/terms-of-use/`         | GIGW 3.0 mandatory policy page.                                                                  |
-| Hyperlinking Policy     | `/hyperlinking-policy/`  | GIGW 3.0 mandatory policy page.                                                                  |
-| Copyright Policy        | `/copyright-policy/`     | GIGW 3.0 mandatory policy page.                                                                  |
-| Sitemap (human-readable)| `/sitemap/`              | Distinct from the machine-readable `/sitemap.xml` at the root.                                   |
-| FAQ / Help              | `/faq/`                  | GIGW 3.0 mandatory policy page.                                                                  |
-| Website Feedback        | `/feedback/`             | General UX/content feedback — distinct from the Grievance Escalation Matrix.                     |
+| Page                                     | URL                     | Relationship to the homepage                                                                                                                         |
+| :--------------------------------------- | :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Contact                                  | `/contact/`             | Full duplicate of the homepage's `#contact` section — both are kept in full, by request.                                                             |
+| Complaints Data                          | `/complaints/`          | Full version (snapshot + monthly/annual trend + audit log). Homepage `#complaints` shows only the current-month snapshot, linking here for the rest. |
+| Investor Charter & Regulatory Disclosures | `/investor-charter/`   | Full A–F SEBI charter text plus adviser registration/identification details, structured like the reference site's charter page. Not duplicated on the homepage — `#compliance` was removed; nav/footer "Disclosures" links point straight here.    |
+| Grievance Escalation Matrix              | `/grievance/`           | Full Tier 1–3 escalation table, linked from the Investor Charter page's grievance section.                                                            |
+| Privacy Policy (incl. Cookie Disclosure) | `/privacy-policy/`      | GIGW 3.0 mandatory policy page.                                                                                                                      |
+| Terms of Use                             | `/terms-of-use/`        | GIGW 3.0 mandatory policy page.                                                                                                                      |
+| Hyperlinking Policy                      | `/hyperlinking-policy/` | GIGW 3.0 mandatory policy page.                                                                                                                      |
+| Copyright Policy                         | `/copyright-policy/`    | GIGW 3.0 mandatory policy page.                                                                                                                      |
+| Sitemap (human-readable)                 | `/sitemap/`             | Distinct from the machine-readable `/sitemap.xml` at the root.                                                                                       |
+| FAQ / Help                               | `/faq/`                 | GIGW 3.0 mandatory policy page.                                                                                                                      |
+| Website Feedback                         | `/feedback/`            | General UX/content feedback — distinct from the Grievance Escalation Matrix.                                                                         |
 
 ---
 
@@ -107,6 +107,7 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 - Registered Office Address & Corporate Identification
 - Principal Officer & Compliance / Grievance Officer Contact Details
 - NISM Certification Numbers — Principal Officer, Compliance Officer, and any persons associated with investment advice
+- Lives on `/investor-charter/` (folded into the charter page, reference-site style) — not a homepage section.
 
 ### 2. Mandatory SEBI Risk Disclaimer
 
@@ -119,7 +120,7 @@ The page incorporates all mandatory sections required for SEBI-registered invest
 
 - Must be the **current SEBI-prescribed Investor Charter for Investment Advisers**, as circulated by SEBI — reproduced as prescribed, not a custom paraphrased summary written for this site.
 - Displayed prominently (own page or a clearly linked, easy-to-find section) — SEBI requires prominent display, not just presence somewhere on the site.
-- Built as a dedicated page, `/investor-charter/`, linked from the homepage's condensed Rights/Responsibilities card. **Pre-launch gate:** the dedicated page currently holds the same condensed summary as the homepage card, not the verbatim Annexure F text — replace its body with the prescribed text before launch.
+- Built as a dedicated page, `/investor-charter/`, holding the full A–F prescribed text as static HTML plus the adviser's registration/identification details (via `data-field`, sourced from `data.json`) — not teased or duplicated on the homepage.
 
 ### 4. Grievance Redressal & Escalation Matrix
 
@@ -265,3 +266,5 @@ Claiming conformance to WCAG 2.2 AA / GIGW 3.0 / IS 17802 requires evidence, not
 * [ ] **Appointment Scheduling**: Drop-in embed for Cal.com or Calendly via lightweight script.
 * [ ] **Live Chat / WhatsApp Support**: Modular widget integration (e.g. Crisp, Tawk.to, WhatsApp API link).
 * [ ] **AI Assistant / Chatbot**: Integration of an automated assistant for investor FAQs.
+
+https://docs.google.com/spreadsheets/d/{url_from_data_json}

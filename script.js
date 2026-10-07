@@ -31,9 +31,8 @@ async function fetchDataJsonWithRetry(attempts = 3, delayMs = 600) {
 // Fetched once, as soon as the script loads (not gated on DOMContentLoaded),
 // and shared by both the DOM-population step and anything else that needs
 // a config value (e.g. the Google Sheet ID) before it can run. Derived
-// contact formats are computed here, on the shared promise itself, so every
-// caller of SITE_DATA_PROMISE sees them regardless of which one happens to
-// run first (initSiteData vs. renderPageContent's {{token}} interpolation).
+// contact formats are computed here, on the shared promise itself, so they're
+// ready regardless of when initSiteData's DOM pass runs.
 const SITE_DATA_PROMISE = fetchDataJsonWithRetry().then(data => {
   if (data && data.contact) {
     if (data.contact.phone) {
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initSheetTables();
   initSiteData();
-  renderPageContent();
 });
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -248,10 +246,6 @@ async function initSiteData() {
   applyDataFieldsToDOM(data);
 }
 
-// Split out from initSiteData so page content injected later (see
-// renderPageContent below) can re-run the same binding pass on the new
-// elements — the initial DOMContentLoaded pass only ever sees what's already
-// in the HTML at that point.
 function applyDataFieldsToDOM(data) {
   document.querySelectorAll('[data-field]').forEach(el => {
     const value = getDataPath(data, el.getAttribute('data-field'));
@@ -267,155 +261,6 @@ function applyDataFieldsToDOM(data) {
     const value = getDataPath(data, el.getAttribute('data-field-value'));
     if (value !== undefined && value !== null) el.value = value;
   });
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   4.5. Per-Page Prose Content (data.json → "pages" key)
-
-   Policy/help pages (Privacy Policy, Terms of Use, Hyperlinking Policy,
-   Copyright Policy, Investor Charter, FAQ) keep every heading/paragraph out
-   of the HTML: <div id="page-content" data-page="privacyPolicy"> is the only
-   thing in the page's <main>, and data.json's pages.privacyPolicy supplies
-   the badge/title/subtitle/sections. To edit the wording of any of these
-   pages, edit data.json — never the HTML.
-
-   data.json holds only plain strings, never HTML markup — a non-technical
-   editor should never need to write a tag. Every node below is built with
-   createElement/textContent, so anything typed into data.json (including a
-   stray "<" or "&") renders as literal text instead of risking broken markup.
-   A string may reference another data.json value with "{{dot.path}}" (e.g.
-   "{{contact.email}}"), resolved by interpolate() below — this is how a
-   section can mention the officer's e-mail once, sourced from the single
-   `contact` field, instead of that e-mail being retyped into prose.
-
-   Section shape (all fields optional except heading):
-     heading:    plain text
-     paragraphs: [ "plain text", ... ]                → one <p> each
-     list:       [ "plain text", ... ]                → one bullet-list <ul>
-     links:      [ { text, href, external? }, ... ]   → one line per link
-   ────────────────────────────────────────────────────────────────────────── */
-function interpolate(str, data) {
-  return String(str ?? '').replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, path) => {
-    const value = getDataPath(data, path);
-    return value !== undefined && value !== null ? value : match;
-  });
-}
-
-function buildLinkLine(link, data) {
-  const p = document.createElement('p');
-  p.className = 'card-desc';
-  const a = document.createElement('a');
-  a.href = interpolate(link.href, data);
-  a.textContent = interpolate(link.text, data);
-  if (link.external) {
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    const arrow = document.createElement('span');
-    arrow.setAttribute('aria-hidden', 'true');
-    arrow.textContent = ' ↗';
-    a.appendChild(arrow);
-    const srOnly = document.createElement('span');
-    srOnly.className = 'sr-only';
-    srOnly.textContent = ' (opens in new tab)';
-    a.appendChild(srOnly);
-  }
-  p.appendChild(a);
-  return p;
-}
-
-async function renderPageContent() {
-  const container = document.getElementById('page-content');
-  if (!container) return;
-
-  const pageKey = container.dataset.page;
-  const data = await SITE_DATA_PROMISE;
-  const page = data && pageKey ? getDataPath(data, `pages.${pageKey}`) : null;
-
-  container.innerHTML = '';
-
-  if (!page) {
-    const errorBox = document.createElement('div');
-    errorBox.className = 'state-box error';
-    errorBox.setAttribute('role', 'alert');
-    errorBox.innerHTML = '<span class="state-icon" aria-hidden="true">❌</span>';
-    const msg = document.createElement('p');
-    msg.textContent = 'Unable to load page content from data.json.';
-    errorBox.appendChild(msg);
-    container.appendChild(errorBox);
-    return;
-  }
-
-  const header = document.createElement('div');
-  header.className = 'section-header';
-
-  if (page.badge) {
-    const badge = document.createElement('span');
-    badge.className = 'section-badge';
-    badge.textContent = interpolate(page.badge, data);
-    header.appendChild(badge);
-  }
-
-  const title = document.createElement('h1');
-  title.className = 'section-title';
-  title.id = `${pageKey}-heading`;
-  title.textContent = interpolate(page.title, data);
-  header.appendChild(title);
-
-  if (page.subtitle) {
-    const subtitle = document.createElement('p');
-    subtitle.className = 'section-subtitle';
-    subtitle.textContent = interpolate(page.subtitle, data);
-    header.appendChild(subtitle);
-  }
-
-  container.appendChild(header);
-
-  (page.sections || []).forEach((section, i) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    if (i > 0) card.style.marginTop = '1.5rem';
-
-    const heading = document.createElement('h2');
-    heading.className = 'card-title';
-    heading.textContent = interpolate(section.heading, data);
-    card.appendChild(heading);
-
-    (section.paragraphs || []).forEach(text => {
-      const p = document.createElement('p');
-      p.className = 'card-desc';
-      p.style.marginTop = '0.75rem';
-      p.textContent = interpolate(text, data);
-      card.appendChild(p);
-    });
-
-    if (section.list && section.list.length) {
-      const ul = document.createElement('ul');
-      ul.style.cssText = 'padding-left:1.25rem; font-size:0.9375rem; color:var(--text-muted); line-height:1.7; margin-top: 0.75rem;';
-      section.list.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = interpolate(item, data);
-        ul.appendChild(li);
-      });
-      card.appendChild(ul);
-    }
-
-    (section.links || []).forEach(link => {
-      const p = buildLinkLine(link, data);
-      p.style.marginTop = '0.75rem';
-      card.appendChild(p);
-    });
-
-    container.appendChild(card);
-  });
-
-  if (page.showLastUpdated) {
-    const stamp = document.createElement('p');
-    stamp.className = 'card-desc';
-    stamp.style.marginTop = '0.75rem';
-    stamp.style.fontSize = '0.8125rem';
-    stamp.textContent = `Last updated: ${interpolate('{{site.policyLastUpdated}}', data)}`;
-    container.appendChild(stamp);
-  }
 }
 
 /* ──────────────────────────────────────────────────────────────────────────

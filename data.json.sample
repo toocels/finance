@@ -1,0 +1,34 @@
+{
+  "adviser": {
+    "proprietorLine": "Your Name (Proprietor, Your Advisory Firm)",
+    "tradeName": "Your Advisory Firm",
+    "registrationType": "Individual SEBI-Registered Investment Adviser (RIA)",
+    "sebiRegNo": "INAXXXXXXXXX",
+    "registrationValidity": "Valid from DD/MM/YYYY till it is suspended or cancelled in accordance with the Regulations",
+    "baslMembershipId": null,
+    "baslValidity": null,
+    "nismCertificationNumbers": null,
+    "nismValidity": null
+  },
+  "contact": {
+    "registeredOfficeAddress": "Your Registered Office Address",
+    "sebiRegionalOffice": "Your SEBI Regional Office Address",
+    "phone": "+91 XXXXXXXXXX",
+    "email": "you@example.com",
+    "grievanceWorkingHours": "Monday to Friday, 10:00 AM – 6:00 PM IST (excluding public holidays)",
+    "resolutionTimelineDays": "Within 21 calendar days (SCORES 2.0 standard)"
+  },
+  "founder": {
+    "name": "Your Name",
+    "role": "Proprietor & Principal Officer — Your Advisory Firm"
+  },
+  "site": {
+    "domain": "example.com",
+    "copyrightYear": 2026,
+    "policyLastUpdated": "Month YYYY"
+  },
+  "config": {
+    "web3formsAccessKey": "your-web3forms-access-key",
+    "googleSheetId": "your-google-sheet-id"
+  }
+}
