@@ -394,7 +394,7 @@ main:focus {
 }
 
 .brand-tag {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
