@@ -14,7 +14,7 @@ This project implements the SEBI-mandated disclosure and website requirements id
 | :--------------- | :-------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Frontend**     | HTML5 / JavaScript / Tailwind CSS | Single-file architecture (`index.html`), utility-first styling, <1s load time.                                                                        |
 | **Hosting**      | GitHub Pages                      | Free static hosting, deploys automatically on `git push`.                                                                                             |
-| **Domain & DNS** | Cloudflare Registrar + CDN        | At-cost domain pricing (~₹800/yr), free edge SSL, DDoS protection.                                                                                    |
+| **Domain & DNS** | Dynadot Registrar                 | At-cost domain pricing, DNS management. No CDN/proxy in front of the site — GitHub Pages serves directly over its own TLS cert.                        |
 | **Contact Form** | Web3Forms                         | Client-side AJAX submission to email without a backend server (250 free/mo).                                                                          |
 | **Data Tables**  | Public Google Sheet (GViz API)    | Live dynamic tables, no database or backend required.                                                                                                 |
 | **Site Data**    | `data.json` (root)                | Name/phone/address/reg-numbers etc., fetched client-side at load and populated into elements tagged `data-field="..."` — one edit updates every page. |
@@ -46,7 +46,7 @@ The site is a homepage (`index.html`) plus a set of standalone pages (folder + `
 ### 1. Security & Static Architecture
 
 - [ ] **Zero Server / Database Footprint**: No database, no PHP, and no vulnerable CMS plugins (immune to SQLi, RCE, and database breaches).
-- [ ] **Static CDN Delivery**: Delivered over Cloudflare Edge SSL and GitHub Pages CDN.
+- [ ] **Static CDN Delivery**: Delivered over GitHub Pages' CDN and TLS (no Cloudflare proxy in front).
 - [ ] **Client-Side Configuration**: Centralized `config.js` for quick parameter changes (Sheet ID, email keys).
 - [ ] **Google Sheet Publish Scope**: Publish as **View-only to anyone with the link** — confirm no edit access is open, and only the intended tab/range is published (not the whole spreadsheet).
 - [ ] **Contact Form Spam Protection**: Web3Forms access key is public in client-side JS by design (expected for this service) — add a honeypot field or Web3Forms' built-in hCaptcha to block bot submissions.
@@ -92,7 +92,7 @@ Content on these pages is reasonable-default boilerplate (DPDP-style privacy lan
 - [ ] **Sitemap** (`sitemap.xml`): pairs with the GIGW sitemap page already listed under statutory pages.
 - [ ] **Meta Tags**: title, meta description, Open Graph tags (for link-share previews).
 - [ ] **Structured Data** (optional): `schema.org` `FinancialService` / `Organization` markup.
-- [ ] **Analytics**: privacy-friendly option — e.g. Cloudflare Web Analytics (free, no cookie/consent banner needed since it's cookieless).
+- [ ] **Analytics**: privacy-friendly option — e.g. Plausible or GoatCounter (cookieless, no consent banner needed). Not Cloudflare Web Analytics — site has no Cloudflare proxy in front of it.
 
 ---
 
@@ -161,7 +161,7 @@ _Required alongside the WCAG/GIGW conformance claim. In scope for delivery, not 
 - **Sitemap** page.
 - **FAQ / Help** section.
 - **Website Feedback** mechanism (general UX/content feedback — distinct from the grievance redressal channel).
-- **Cookie Disclosure** (Cloudflare edge cookies) — can fold into Privacy Policy.
+- **Cookie Disclosure** (currently: none set — no CDN/analytics cookies in use) — can fold into Privacy Policy.
 
 ### 9. Privacy Policy & DPDP Implementation (Contact Form)
 
@@ -193,7 +193,7 @@ SEBI's advertisement code applies to the website itself, not just to separate ad
 | Account / Asset    | Holds                              | Owner       |
 | :----------------- | :--------------------------------- | :---------- |
 | GitHub Repo / Org  | Source code, deploy pipeline       | _(fill in)_ |
-| Cloudflare Account | Domain registration, DNS, edge SSL | _(fill in)_ |
+| Dynadot Account    | Domain registration, DNS            | _(fill in)_ |
 | Web3Forms Account  | Contact form access key            | _(fill in)_ |
 | Google Sheet       | Complaint data source              | _(fill in)_ |
 
@@ -209,7 +209,7 @@ SEBI's advertisement code applies to the website itself, not just to separate ad
 | Item                   | Service                                   | Cost                      |
 | :--------------------- | :---------------------------------------- | :------------------------ |
 | **Hosting**            | GitHub Pages                              | ₹0                        |
-| **Domain & DNS**       | Cloudflare Registrar (`.com` / `.in`)     | ~₹800 – ₹1,000 / year     |
+| **Domain & DNS**       | Dynadot Registrar (`.com` / `.in`)        | ~₹800 – ₹1,000 / year     |
 | **Contact Form**       | Web3Forms (Free Tier: 250 submissions/mo) | ₹0                        |
 | **Data Sync**          | Google Sheets GViz API                    | ₹0                        |
 | **Total Running Cost** |                                           | **~₹800 – ₹1,000 / year** |
@@ -217,7 +217,7 @@ SEBI's advertisement code applies to the website itself, not just to separate ad
 ### 2. Routine Maintenance Operations
 
 - **Monthly Complaint Data Updates**: Update figures directly in the shared Google Sheet. Changes propagate to the live site on next page load.
-- **Domain & DNS**: Annual domain renewal via Cloudflare Registrar (SSL auto-renewed).
+- **Domain & DNS**: Annual domain renewal via Dynadot (TLS cert auto-renewed by GitHub Pages).
 - **Content Freshness (GIGW, soft requirement)**: "Last updated" date stamp on statutory/disclosure pages.
 
 ---
