@@ -4,7 +4,7 @@ A website for a SEBI-registered investment adviser (RIA), implementing the appli
 
 ## Current Pre-Launch Status (Updated October 2026)
 
-- [x] **Regulatory Credentials & Disclosures**: SEBI Reg. No. (`INA000023126`) and BASL Enlistment No. (`2566`) configured in `data.json`.
+- [x] **Regulatory Credentials & Disclosures**: SEBI Registration Number and BASL/BSE Enlistment Number configured in `data.json`.
 - [x] **Registration Validity**: Both SEBI registration and BSE/IAASB enlistment marked as **Perpetual** (coterminous with active SEBI registration per SEBI Circular `SEBI/HO/MIRSD/MIRSD-POD-1/P/CIR/2024/101`).
 - [x] **Zero Pending Placeholders**: All `⚠ PENDING` labels resolved across all 12 pages.
 - [x] **Automated Accessibility Audit**: 100/100 Accessibility, 100/100 Best Practices, and 100/100 SEO on Google Lighthouse (v13.5.0) across all 12 pages. Zero failing Axe-core violations.
@@ -107,8 +107,8 @@ The site incorporates all mandatory sections required for SEBI-registered invest
 
 ### 1. Adviser Identification & Registration
 
-- **SEBI Registration Number**: `INA000023126` (Validity: Perpetual).
-- **BASL / BSE Enlistment Details**: Membership No. `2566` (Validity: Perpetual — coterminous with SEBI registration).
+- **SEBI Registration Number**: Configured via `data.json` (Validity: Perpetual).
+- **BASL / BSE Enlistment Details**: Configured via `data.json` (Validity: Perpetual — coterminous with SEBI registration).
 - **Registered Office Address**: Displayed on `/investor-charter/`, contact page, and footer.
 - **Principal Officer Contact**: Displayed alongside jurisdictional SEBI regional office details.
 - Lives on `/investor-charter/` (folded into the charter page, reference-site style) — not a homepage section.
