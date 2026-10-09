@@ -141,16 +141,6 @@ The site incorporates all mandatory sections required for SEBI-registered invest
 - Homepage `#complaints` section shows the current-month snapshot only; the full monthly/annual trend and compliance audit log live on the dedicated `/complaints/` page, linked from the homepage.
 - **Public data is aggregate counts only** — numbers per category/status. Zero PII.
 
----
-
-## Ownership & Access
-
-| Account / Asset   | Holds                        | Owner      |
-| :---------------- | :--------------------------- | :--------- |
-| GitHub Repo / Org | Source code, deploy pipeline | _(client)_ |
-| Dynadot Account   | Domain registration, DNS     | _(client)_ |
-| Web3Forms Account | Contact form access key      | _(client)_ |
-| Google Sheet      | Complaint data source        | _(client)_ |
 
 ---
 
