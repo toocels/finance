@@ -6,7 +6,6 @@ A website for a SEBI-registered investment adviser (RIA), implementing the appli
 
 - [x] **Regulatory Credentials & Disclosures**: SEBI Reg. No. (`INA000023126`) and BASL Enlistment No. (`2566`) configured in `data.json`.
 - [x] **Registration Validity**: Both SEBI registration and BSE/IAASB enlistment marked as **Perpetual** (coterminous with active SEBI registration per SEBI Circular `SEBI/HO/MIRSD/MIRSD-POD-1/P/CIR/2024/101`).
-- [x] **NISM Compliance**: Unnecessary NISM certificate numbers removed from public website credentials (verified non-mandatory for website display per Master Circular Section I(xvii)); mandatory statutory disclaimer text mentioning NISM retained verbatim across all pages.
 - [x] **Zero Pending Placeholders**: All `⚠ PENDING` labels resolved across all 12 pages.
 - [x] **Automated Accessibility Audit**: 100/100 Accessibility, 100/100 Best Practices, and 100/100 SEO on Google Lighthouse (v13.5.0) across all 12 pages. Zero failing Axe-core violations.
 - [x] **Dynamic Google Sheet Tables**: Live GViz integration active and public (read-only) for monthly complaint snapshot, monthly/annual trend logs, and annual compliance audit log.
@@ -112,7 +111,6 @@ The site incorporates all mandatory sections required for SEBI-registered invest
 - **BASL / BSE Enlistment Details**: Membership No. `2566` (Validity: Perpetual — coterminous with SEBI registration).
 - **Registered Office Address**: Displayed on `/investor-charter/`, contact page, and footer.
 - **Principal Officer Contact**: Displayed alongside jurisdictional SEBI regional office details.
-- **NISM Certification Numbers**: Reclassified as non-mandatory for website display per Master Circular Section I(xvii); removed from public view.
 - Lives on `/investor-charter/` (folded into the charter page, reference-site style) — not a homepage section.
 
 ### 2. Mandatory SEBI Risk Disclaimer
