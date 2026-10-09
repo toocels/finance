@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initSheetTables();
   initSiteData();
+  initBackToTop();
 });
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -169,6 +170,25 @@ function initMobileNav() {
         toggleBtn.setAttribute('aria-expanded', 'false');
       }
     });
+  });
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   2b. Back to Top Button
+   ────────────────────────────────────────────────────────────────────────── */
+function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  const toggleVisibility = () => {
+    btn.classList.toggle('is-visible', window.scrollY > 400);
+  };
+
+  window.addEventListener('scroll', toggleVisibility, { passive: true });
+  toggleVisibility();
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 

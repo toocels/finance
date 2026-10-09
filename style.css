@@ -887,6 +887,97 @@ main:focus {
   line-height: 1.6;
 }
 
+/* ── Who We Are (SmartArt) ── */
+.about-smartart {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="high-contrast"] .about-smartart {
+  background-color: #0a0a0a;
+  border: 2px solid #ffffff;
+}
+
+.about-points {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-points::before {
+  content: '';
+  position: absolute;
+  left: 26px;
+  top: 26px;
+  bottom: 26px;
+  width: 2px;
+  background-color: var(--border-color);
+}
+
+.about-point {
+  display: flex;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.about-point-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  background-color: var(--secondary-light);
+  color: var(--secondary);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="high-contrast"] .about-point-icon {
+  background-color: #000000;
+  color: #ffff00;
+  border: 1px solid #ffff00;
+}
+
+.about-figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.about-figure-visual {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 424 / 312;
+  background-color: var(--primary);
+  -webkit-mask-image: url('images/jeeves-presenting.png');
+  mask-image: url('images/jeeves-presenting.png');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+[data-theme="high-contrast"] .about-figure-visual {
+  background-color: #ffff00;
+}
+
 /* ── Who We Are / Founder Highlight ── */
 .founder-card {
   background: var(--bg-surface);
@@ -986,49 +1077,62 @@ main:focus {
 /* ── Step / Process Flow (Our Approach) ── */
 .process-grid {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   gap: 1.5rem;
   position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.process-grid::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background-color: var(--border-color);
+  z-index: 0;
 }
 
 .process-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.process-body {
+  flex: 1;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  padding: 1.25rem 1.5rem;
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-  flex: 1 1 240px;
-  max-width: 300px;
 }
 
-.process-card:hover {
-  transform: translateY(-4px);
+.process-card:hover .process-body {
+  transform: translateX(4px);
   box-shadow: var(--shadow-lg);
   border-color: var(--primary);
 }
 
-[data-theme="high-contrast"] .process-card {
+[data-theme="high-contrast"] .process-body {
   background-color: #0a0a0a;
   border: 2px solid #ffffff;
 }
 
-[data-theme="high-contrast"] .process-card:hover {
+[data-theme="high-contrast"] .process-card:hover .process-body {
   border-color: #ffff00;
 }
 
 .process-step-num {
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   background: var(--primary);
   color: #ffffff;
   border-radius: 50%;
@@ -1036,8 +1140,10 @@ main:focus {
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 0.9375rem;
-  margin-bottom: 1.25rem;
+  font-size: 1.0625rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
   box-shadow: 0 3px 8px rgba(11, 30, 54, 0.25);
 }
 
@@ -1799,9 +1905,22 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .about-smartart {
+    grid-template-columns: 1fr;
+    padding: 1.75rem;
+  }
+
+  .about-figure {
+    order: -1;
+  }
+
+  .about-figure-visual {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
   .process-card {
-    flex-basis: 100%;
-    max-width: 100%;
+    gap: 1rem;
   }
 
   .form-row {
@@ -1855,6 +1974,48 @@ select {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* ── Back to Top Button ── */
+.back-to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--transition-speed), transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: var(--primary-hover);
+}
+
+[data-theme="high-contrast"] .back-to-top {
+  background: #ffff00;
+  color: #000000;
+  border: 2px solid #ffffff;
 }
 
 /* ── Motion Sensitivity ── */
