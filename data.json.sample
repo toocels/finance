@@ -1,34 +1,32 @@
 {
   "adviser": {
-    "proprietorLine": "Your Name (Proprietor, Your Advisory Firm)",
-    "tradeName": "Your Advisory Firm",
+    "proprietorLine": "Aarav Sharma (Proprietor, Apex Wealth Advisors)",
+    "tradeName": "Apex Wealth Advisors",
     "registrationType": "Individual SEBI-Registered Investment Adviser (RIA)",
-    "sebiRegNo": "INAXXXXXXXXX",
-    "registrationValidity": "Valid from DD/MM/YYYY till it is suspended or cancelled in accordance with the Regulations",
-    "baslMembershipId": null,
-    "baslValidity": null,
-    "nismCertificationNumbers": null,
-    "nismValidity": null
+    "sebiRegNo": "INA000099999",
+    "registrationValidity": "Valid from 01/01/2025 till it is suspended or cancelled in accordance with the Regulations",
+    "baslMembershipId": "1999",
+    "baslValidity": "Perpetual"
   },
   "contact": {
-    "registeredOfficeAddress": "Your Registered Office Address",
-    "sebiRegionalOffice": "Your SEBI Regional Office Address",
-    "phone": "+91 XXXXXXXXXX",
-    "email": "you@example.com",
+    "registeredOfficeAddress": "101, Business Boulevard, MG Road, Bengaluru – 560001, Karnataka, India",
+    "sebiRegionalOffice": "2nd Floor, Jeevan Mangal Building, No.4, Residency Road, Bengaluru – 560025, Karnataka",
+    "phone": "+91 9876543210",
+    "email": "contact@apexwealthadvisors.example.com",
     "grievanceWorkingHours": "Monday to Friday, 10:00 AM – 6:00 PM IST (excluding public holidays)",
     "resolutionTimelineDays": "Within 21 calendar days (SCORES 2.0 standard)"
   },
   "founder": {
-    "name": "Your Name",
-    "role": "Proprietor & Principal Officer — Your Advisory Firm"
+    "name": "Aarav Sharma",
+    "role": "Proprietor & Principal Officer — Apex Wealth Advisors"
   },
   "site": {
-    "domain": "example.com",
+    "domain": "apexwealthadvisors.example.com",
     "copyrightYear": 2026,
-    "policyLastUpdated": "Month YYYY"
+    "policyLastUpdated": "October 2026"
   },
   "config": {
-    "web3formsAccessKey": "your-web3forms-access-key",
-    "googleSheetId": "your-google-sheet-id"
+    "web3formsAccessKey": "00000000-0000-0000-0000-000000000000",
+    "googleSheetId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
   }
 }
