@@ -371,9 +371,13 @@ async function initSheetTables() {
   function buildTableBlock({ icon, title, badge, headers, bodyRows, totals, totalLabel, totalColspan, captionText, ariaLabel }) {
     const block = document.createElement('div');
     block.className = 'sheet-block';
+    // Homepage snapshot sits under an <h2> section heading, so these are <h3>.
+    // The dedicated Complaints page's section heading is an <h1>, so these
+    // need to be <h2> there to avoid skipping a heading level.
+    const headingTag = app.dataset.scope === 'snapshot' ? 'h3' : 'h2';
     block.innerHTML = `
       <div class="sheet-header">
-        <h3 class="sheet-title">${icon} ${esc(title)}</h3>
+        <${headingTag} class="sheet-title">${icon} ${esc(title)}</${headingTag}>
         ${badge ? `<span class="sheet-badge">${esc(badge)}</span>` : ''}
       </div>`;
 
