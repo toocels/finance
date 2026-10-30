@@ -42,6 +42,7 @@ const SITE_DATA_PROMISE = fetchDataJsonWithRetry().then(data => {
     }
     if (data.contact.email) {
       data.contact.emailHref = `mailto:${data.contact.email}`;
+      data.contact.copyrightInfringementEmailHref = `mailto:${data.contact.email}?subject=${encodeURIComponent('Copyright Infringement Notice')}`;
     }
     if (data.contact.registeredOfficeAddress) {
       data.contact.mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.contact.registeredOfficeAddress)}`;
@@ -200,15 +201,58 @@ function initContactForm() {
   const btn = document.getElementById('submitBtn');
   const successMsg = document.getElementById('successMsg');
   const errorMsg = document.getElementById('errorMsg');
+  const validationMsg = document.getElementById('validationMsg');
+  const formStatus = document.getElementById('formStatus');
 
   if (!form || !btn) return;
+
+  // Marks each currently-invalid field with aria-invalid and a field-level
+  // error message tied via aria-describedby (novalidate suppresses the
+  // browser's own bubble, so without this an empty required field or a
+  // malformed email would otherwise submit silently with no feedback).
+  function markFieldValidity() {
+    const fields = Array.from(form.querySelectorAll('input, textarea, select'));
+    const invalidFields = [];
+    fields.forEach(field => {
+      const errorId = `${field.id}-error`;
+      let errorEl = document.getElementById(errorId);
+      if (field.validity && !field.validity.valid) {
+        invalidFields.push(field);
+        field.setAttribute('aria-invalid', 'true');
+        if (!errorEl) {
+          errorEl = document.createElement('p');
+          errorEl.id = errorId;
+          errorEl.className = 'field-error';
+          field.insertAdjacentElement('afterend', errorEl);
+        }
+        errorEl.textContent = field.validationMessage;
+        field.setAttribute('aria-describedby', errorId);
+      } else {
+        field.removeAttribute('aria-invalid');
+        if (errorEl) errorEl.remove();
+      }
+    });
+    return invalidFields;
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const invalidFields = markFieldValidity();
+    if (invalidFields.length) {
+      if (validationMsg) {
+        validationMsg.textContent = `❌ Please correct ${invalidFields.length === 1 ? 'the highlighted field' : `the ${invalidFields.length} highlighted fields`} before submitting.`;
+        validationMsg.style.display = 'block';
+      }
+      invalidFields[0].focus();
+      return;
+    }
+    if (validationMsg) validationMsg.style.display = 'none';
+
     btn.disabled = true;
     const originalBtnContent = btn.innerHTML;
     btn.innerHTML = '<span>⏳</span> Sending message…';
+    if (formStatus) formStatus.textContent = 'Submitting, please wait…';
 
     if (successMsg) successMsg.style.display = 'none';
     if (errorMsg) errorMsg.style.display = 'none';
@@ -241,6 +285,7 @@ function initContactForm() {
     } finally {
       btn.disabled = false;
       btn.innerHTML = originalBtnContent;
+      if (formStatus) formStatus.textContent = '';
     }
   });
 }
@@ -308,6 +353,7 @@ async function initSheetTables() {
 
   const TAB_CACHE_KEY = `sheet-tabs:${SHEET_ID}`;
   const TAB_CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes cache
+  let footnoteBlockCounter = 0;
 
   async function listTabs(id) {
     try {
@@ -388,9 +434,12 @@ async function initSheetTables() {
   // accessible table. Shared by every table type below so the DOM/ARIA
   // wiring only exists once. Pass totals: null to omit the tfoot entirely
   // (e.g. a plain status log where summing columns makes no sense).
-  function buildTableBlock({ icon, title, badge, headers, bodyRows, totals, totalLabel, totalColspan, captionText, ariaLabel }) {
+  function buildTableBlock({ icon, title, badge, headers, bodyRows, totals, totalLabel, totalColspan, captionText, ariaLabel, footnotes }) {
     const block = document.createElement('div');
     block.className = 'sheet-block';
+    const blockId = `sheet-block-${++footnoteBlockCounter}`;
+    const footnoteIds = {};
+    (footnotes || []).forEach((fn, i) => { footnoteIds[fn.marker] = `${blockId}-fn-${i}`; });
     // Homepage snapshot sits under an <h2> section heading, so these are <h3>.
     // The dedicated Complaints page's section heading is an <h1>, so these
     // need to be <h2> there to avoid skipping a heading level.
@@ -416,7 +465,11 @@ async function initSheetTables() {
     table.appendChild(caption);
 
     const thead = document.createElement('thead');
-    thead.innerHTML = `<tr>${headers.map(h => `<th scope="col">${esc(h)}</th>`).join('')}</tr>`;
+    thead.innerHTML = `<tr>${headers.map(h => {
+      const fn = (footnotes || []).find(f => h.endsWith(f.marker));
+      const describedby = fn ? ` aria-describedby="${footnoteIds[fn.marker]}"` : '';
+      return `<th scope="col"${describedby}>${esc(h)}</th>`;
+    }).join('')}</tr>`;
     table.appendChild(thead);
 
     const tbody = document.createElement('tbody');
@@ -431,7 +484,10 @@ async function initSheetTables() {
           tr.appendChild(th);
         } else {
           const td = document.createElement('td');
-          td.textContent = cell;
+          // An empty string from the sheet renders as a blank cell, which
+          // screen readers announce as "blank" with no indication whether
+          // that means zero or no data was recorded — spell it out instead.
+          td.textContent = cell.trim() === '' ? 'NIL' : cell;
           tr.appendChild(td);
         }
       });
@@ -458,6 +514,19 @@ async function initSheetTables() {
 
     wrap.appendChild(table);
     block.appendChild(wrap);
+
+    if (footnotes && footnotes.length) {
+      const fnList = document.createElement('ul');
+      fnList.className = 'table-footnotes';
+      footnotes.forEach(fn => {
+        const li = document.createElement('li');
+        li.id = footnoteIds[fn.marker];
+        li.textContent = `${fn.marker} ${fn.text}`;
+        fnList.appendChild(li);
+      });
+      block.appendChild(fnList);
+    }
+
     return block;
   }
 
@@ -735,6 +804,10 @@ async function initSheetTables() {
       totals,
       totalColspan: 1,
       captionText: 'SEBI complaint disposal trend, by financial year',
+      footnotes: [
+        { marker: '*', text: 'Includes complaints resolved during the financial year, whether received in that year or carried forward from the previous year.' },
+        { marker: '#', text: 'Pending as on the last day of the financial year, including complaints pending for redressal/resolution as per SEBI (SEBI Complaints Redress System) guidelines.' },
+      ],
     }));
   }
 

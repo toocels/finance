@@ -107,7 +107,7 @@
       <div class="section-container">
         <div class="section-header">
           <span class="section-badge">Policies &amp; Help</span>
-          <h1 id="copyrightPolicy-heading" class="section-title">Copyright Policy</h1>
+          <h1 id="copyrightPolicy-heading" class="section-title" aria-describedby="lastUpdated">Copyright Policy</h1>
           <p class="section-subtitle">
             Ownership and permitted use of the content on this website.
           </p>
@@ -148,12 +148,12 @@
             <span data-field="contact.email">vmadhusrinivas@gmail.com</span>.
           </p>
           <p class="card-desc" style="margin-top:0.75rem;">
-            <a href="mailto:vmadhusrinivas@gmail.com" data-field-href="contact.emailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>
+            <a href="mailto:vmadhusrinivas@gmail.com?subject=Copyright%20Infringement%20Notice" data-field-href="contact.copyrightInfringementEmailHref" data-field="contact.email">vmadhusrinivas@gmail.com</a>
           </p>
         </div>
 
-        <p class="card-desc" style="margin-top: 0.75rem; font-size: 0.8125rem;">
-          Last updated: <span data-field="site.policyLastUpdated">September 2026</span>
+        <p id="lastUpdated" class="card-desc" style="margin-top: 0.75rem; font-size: 0.8125rem;">
+          Last updated: <time datetime="2026-09" data-field="site.policyLastUpdated">September 2026</time>
         </p>
 
         <p class="card-desc" style="margin-top: 2rem;">
@@ -231,7 +231,7 @@
 
       <div class="footer-bottom">
         <div>
-          &copy; <span data-field="site.copyrightYear">2026</span> Jeeves Investment Advisors. All Rights Reserved. | SEBI Reg. No.: <span data-field="adviser.sebiRegNo">INA000023126</span>
+          &copy; <span data-field="site.copyrightYear">2026</span> Jeeves Investment Advisors. All Rights Reserved. <span aria-hidden="true">|</span> SEBI Reg. No.: <span data-field="adviser.sebiRegNo">INA000023126</span>
         </div>
         <div>
           URL: <strong data-field="site.domain">jeevesinvadvisors.in</strong>

@@ -107,7 +107,7 @@
       <div class="section-container">
         <div class="section-header">
           <span class="section-badge">SEBI Disclosures</span>
-          <h1 id="investorCharter-heading" class="section-title">Investor Charter for Investment Advisers</h1>
+          <h1 id="investorCharter-heading" class="section-title" aria-describedby="lastUpdated">Investor Charter for Investment Advisers</h1>
           <p class="section-subtitle">
             The rights, responsibilities, and service standards SEBI requires every registered Investment Adviser to
             disclose to clients.
@@ -282,8 +282,8 @@
           </p>
         </div>
 
-        <p class="card-desc" style="margin-top: 0.75rem; font-size: 0.8125rem;">
-          Last updated: <span data-field="site.policyLastUpdated">September 2026</span>
+        <p id="lastUpdated" class="card-desc" style="margin-top: 0.75rem; font-size: 0.8125rem;">
+          Last updated: <time datetime="2026-09" data-field="site.policyLastUpdated">September 2026</time>
         </p>
 
         <p class="card-desc" style="margin-top: 2rem;">
@@ -361,7 +361,7 @@
 
       <div class="footer-bottom">
         <div>
-          &copy; <span data-field="site.copyrightYear">2026</span> Jeeves Investment Advisors. All Rights Reserved. | SEBI Reg. No.: <span data-field="adviser.sebiRegNo">INA000023126</span>
+          &copy; <span data-field="site.copyrightYear">2026</span> Jeeves Investment Advisors. All Rights Reserved. <span aria-hidden="true">|</span> SEBI Reg. No.: <span data-field="adviser.sebiRegNo">INA000023126</span>
         </div>
         <div>
           URL: <strong data-field="site.domain">jeevesinvadvisors.in</strong>
