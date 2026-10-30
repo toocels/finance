@@ -1511,6 +1511,14 @@ select {
   transition: border-color var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed);
 }
 
+/* Explicit, theme-aware placeholder color — relying on each browser's own
+   default risks contrast ratios well under 4.5:1 in several of them. */
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
